@@ -18,8 +18,8 @@
 (function () {
   'use strict';
 
-  const GA_ID = 'G-XXXXXXXXXX';        // ← your GA4 Measurement ID
-  const CLARITY_ID = 'XXXXXXXXXX';     // ← your Clarity Project ID
+  const GA_ID = 'G-ZRNDFVSE6N';        // ← your GA4 Measurement ID
+  const CLARITY_ID = 'yn3l8i3fzi';     // ← your Clarity Project ID
 
   const gaReady = /^G-[A-Z0-9]+$/.test(GA_ID) && GA_ID !== 'G-XXXXXXXXXX';
   const clarityReady = /^[a-z0-9]+$/i.test(CLARITY_ID) && CLARITY_ID !== 'XXXXXXXXXX';
