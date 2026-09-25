@@ -318,7 +318,11 @@
               <span class="af-status"><span class="af-status-dot"></span>Ready to help</span>
               <button type="button" class="af-clear-btn" id="af-clear">Clear chat</button>
             </div>
-            <div class="af-messages" id="af-messages"></div>
+            <!-- data-clarity-mask: whatever a visitor types here renders as ordinary
+                 page text, which Clarity's default "Balanced" mode DOES capture in
+                 session replays (it only auto-masks input boxes, numbers and email
+                 addresses). Masking the transcript keeps the footer's privacy claim true. -->
+            <div class="af-messages" id="af-messages" data-clarity-mask="true"></div>
             <div class="af-chips" id="af-chips"></div>
             <form class="af-input-row" id="af-form">
               <input type="text" id="af-input" class="af-input" placeholder="Ask something about Bilal…" aria-label="Ask something about Bilal" autocomplete="off">

@@ -1568,7 +1568,9 @@
           <div class="el-gallery" id="el-gallery" role="listbox" aria-label="Applications"></div>
           <div class="el-detail">
             <div class="el-detail-header" id="el-detail-header"></div>
-            <div class="el-history" id="el-history"></div>
+            <!-- data-clarity-mask: notes typed here render as ordinary page text,
+                 which Clarity's default masking mode captures in session replays. -->
+            <div class="el-history" id="el-history" data-clarity-mask="true"></div>
             <form class="el-form" id="el-form">
               <input type="text" class="el-input" id="el-input" placeholder="Log a new email note…" aria-label="Log a new email note" autocomplete="off">
               <button type="submit" class="el-log-btn">Log email</button>
