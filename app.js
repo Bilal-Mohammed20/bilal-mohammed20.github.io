@@ -70,7 +70,7 @@
     return result;
   }
   const PILLAR_FACTS = {
-    structure: ['146 sites and departments'],
+    structure: ['146+ departments'],
   };
   // Empty by design: the emphasis helper only ever wraps phrases that are
   // present verbatim in the copy, so entries are added here only alongside the
@@ -93,7 +93,7 @@
     const p = CONTENT.profile;
     $('#hero-eyebrow').textContent = p.heroEyebrow;
     $('#hero-headline').textContent = p.heroHeadline;
-    $('#hero-sub').innerHTML = applyEmphasis(p.heroSub, ['146 sites and departments']);
+    $('#hero-sub').innerHTML = applyEmphasis(p.heroSub, ['146+ departments']);
     if (p.heroAvailability) $('#hero-availability').textContent = p.heroAvailability;
 
     const wrap = $('#stack-visual');
