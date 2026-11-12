@@ -41,9 +41,9 @@
   "sameAs": ["https://www.linkedin.com/in/bilal-ahmed-mohammed"]
 }
 </script>
-<link rel="stylesheet" href="fonts.css?v=20261113b">
-<link rel="stylesheet" href="styles.css?v=20261113b">
-<script src="analytics.js?v=20261113b" defer></script>
+<link rel="stylesheet" href="fonts.css?v=20261113c">
+<link rel="stylesheet" href="styles.css?v=20261113c">
+<script src="analytics.js?v=20261113c" defer></script>
 </head>
 <body>
 <a href="#top" class="skip-link">Skip to content</a>
@@ -161,12 +161,46 @@
     </div>
   </section>
 
-  <!-- ============ PROJECTS ============ -->
-  <section class="projects" id="projects">
+  <!-- ============ PROCESS DESIGN (decision framework, kept separate from REGIS) ============ -->
+  <section id="process-design">
     <div class="container has-ghost-num">
       <span class="ghost-num" aria-hidden="true">02</span>
       <div class="section-head reveal">
-        <div class="section-kicker"><span class="num">02</span><span class="eyebrow">Tools & automation</span></div>
+        <div class="section-kicker"><span class="num">02</span><span class="eyebrow" id="decision-eyebrow"></span></div>
+        <h2 id="decision-title"></h2>
+        <p class="lede" id="decision-intro" style="margin-top:14px;"></p>
+      </div>
+      <div class="decision-block reveal is-collapsed" id="decision-block">
+        <div class="decision-picker">
+          <span class="decision-picker-label">Trace a path:</span>
+          <button type="button" data-scenario="a">Scenario A · Corporate audit</button>
+          <button type="button" data-scenario="b">Scenario B · Single store</button>
+          <button type="button" data-scenario="c">Scenario C · Multi-store</button>
+          <button type="button" data-scenario="d">Scenario D · Wrong store</button>
+          <button type="button" id="decision-reset" title="Show the full flow again">↺ Reset</button>
+        </div>
+        <p class="vh" id="decision-text-alt">
+          Text summary of the diagram: a compliance report is first checked by type. Corporate audit reports are
+          accepted immediately with no follow-up. Store submission reports are checked against four scenarios:
+          Scenario A, a corporate audit, closes immediately; Scenario B, a single-store report, is accepted once
+          evidence is confirmed; Scenario C, a multi-store report, is accepted and then syncs every linked store;
+          Scenario D, submitted to the wrong store, is redirected to the correct one before following the same
+          evidence and sync steps as Scenario C. Use the "Trace a path" buttons above to read each scenario in
+          full detail.
+        </p>
+        <div class="decision-diagram" id="decision-diagram" role="img" aria-label="Decision framework diagram, see the preceding text summary for full detail" aria-describedby="decision-text-alt"></div>
+        <button type="button" class="decision-expand" id="decision-expand" aria-expanded="false">Show the full diagram ▾</button>
+        <p class="decision-scroll-hint">← scroll to see the full flow →</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="projects" id="projects">
+    <div class="container has-ghost-num">
+      <span class="ghost-num" aria-hidden="true">03</span>
+      <div class="section-head reveal">
+        <div class="section-kicker"><span class="num">03</span><span class="eyebrow">Tools & automation</span></div>
         <h2>Tools built to remove the manual work</h2>
         <p class="lede" style="margin-top:14px;">Tools built to close real operational gaps: from lightweight offline reconciliation checks through to Power BI executive reporting, a monthly SharePoint sync, and its companion Power Apps tool. Four run entirely client-side with no server or install. A self-built support assistant, further down, answers questions about this site itself.</p>
       </div>
@@ -257,9 +291,9 @@
   <!-- ============ JOURNEY ============ -->
   <section class="journey" id="journey">
     <div class="container has-ghost-num">
-      <span class="ghost-num" aria-hidden="true">03</span>
+      <span class="ghost-num" aria-hidden="true">04</span>
       <div class="section-head reveal">
-        <div class="section-kicker"><span class="num">03</span><span class="eyebrow">Professional journey</span></div>
+        <div class="section-kicker"><span class="num">04</span><span class="eyebrow">Professional journey</span></div>
         <h2>From frontline operations to statewide digital delivery</h2>
         <p class="lede" style="margin-top:14px;">One throughline across a varied career: figuring out what stakeholders actually need, and delivering it through project management, data analysis, stakeholder engagement, and hands-on building.</p>
       </div>
@@ -299,40 +333,6 @@
           <div class="tl-org">BP Box Hill South, Victoria</div>
           <p class="tl-summary">100+ customer interactions a day. Where the instinct for reading people under pressure started.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ PROCESS DESIGN (decision framework, kept separate from REGIS) ============ -->
-  <section id="process-design">
-    <div class="container has-ghost-num">
-      <span class="ghost-num" aria-hidden="true">04</span>
-      <div class="section-head reveal">
-        <div class="section-kicker"><span class="num">04</span><span class="eyebrow" id="decision-eyebrow"></span></div>
-        <h2 id="decision-title"></h2>
-        <p class="lede" id="decision-intro" style="margin-top:14px;"></p>
-      </div>
-      <div class="decision-block reveal is-collapsed" id="decision-block">
-        <div class="decision-picker">
-          <span class="decision-picker-label">Trace a path:</span>
-          <button type="button" data-scenario="a">Scenario A · Corporate audit</button>
-          <button type="button" data-scenario="b">Scenario B · Single store</button>
-          <button type="button" data-scenario="c">Scenario C · Multi-store</button>
-          <button type="button" data-scenario="d">Scenario D · Wrong store</button>
-          <button type="button" id="decision-reset" title="Show the full flow again">↺ Reset</button>
-        </div>
-        <p class="vh" id="decision-text-alt">
-          Text summary of the diagram: a compliance report is first checked by type. Corporate audit reports are
-          accepted immediately with no follow-up. Store submission reports are checked against four scenarios:
-          Scenario A, a corporate audit, closes immediately; Scenario B, a single-store report, is accepted once
-          evidence is confirmed; Scenario C, a multi-store report, is accepted and then syncs every linked store;
-          Scenario D, submitted to the wrong store, is redirected to the correct one before following the same
-          evidence and sync steps as Scenario C. Use the "Trace a path" buttons above to read each scenario in
-          full detail.
-        </p>
-        <div class="decision-diagram" id="decision-diagram" role="img" aria-label="Decision framework diagram, see the preceding text summary for full detail" aria-describedby="decision-text-alt"></div>
-        <button type="button" class="decision-expand" id="decision-expand" aria-expanded="false">Show the full diagram ▾</button>
-        <p class="decision-scroll-hint">← scroll to see the full flow →</p>
       </div>
     </div>
   </section>
@@ -382,7 +382,7 @@
 
 </main>
 
-<script src="data.js?v=20261113b"></script>
-<script src="app.js?v=20261113b"></script>
+<script src="data.js?v=20261113c"></script>
+<script src="app.js?v=20261113c"></script>
 </body>
 </html>
