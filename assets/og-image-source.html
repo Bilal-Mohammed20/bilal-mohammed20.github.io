@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../fonts.css">
+<style>
+  /* Same tokens as styles.css — the OG card is generated from the live palette
+     so it can never drift from the site again. */
+  :root{
+    --paper:        #F4F8F7;
+    --ink:          #142A2A;
+    --ink-soft:     #4A433C;
+    --layer-coral:  #6BAA9E;
+    --layer-violet: #3E8B7C;
+    --layer-gold:   #1F6E60;
+    --layer-teal:   #125349;
+    --grid-dot:     rgba(20,42,42,0.065);
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body:    'Literata', Georgia, serif;
+    --font-mono:    'IBM Plex Mono', monospace;
+  }
+  *{ box-sizing: border-box; margin: 0; }
+  body{
+    width: 1200px; height: 630px; overflow: hidden;
+    background-color: var(--paper);
+    background-image: radial-gradient(circle at 1px 1px, var(--grid-dot) 1px, transparent 1.6px);
+    background-size: 28px 28px;
+    position: relative;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  /* the same two ambient drifts the hero uses, held still */
+  .blob{ position:absolute; border-radius:50%; filter: blur(90px); }
+  .blob-a{ width:520px; height:520px; background: var(--layer-gold);  opacity:0.20; top:-150px; right:-90px; }
+  .blob-b{ width:440px; height:440px; background: var(--layer-teal);  opacity:0.16; bottom:-170px; left:-110px; }
+  .blob-c{ width:300px; height:300px; background: var(--layer-violet);opacity:0.10; top:44%; left:52%; }
+
+  .frame{ position:relative; padding: 0 80px; height:100%; display:flex; flex-direction:column; justify-content:center; }
+
+  .dots{ display:flex; gap:11px; margin-bottom: 34px; }
+  .dots span{ width:17px; height:17px; border-radius:50%; }
+
+  h1{
+    font-family: var(--font-display); font-weight: 700; font-size: 68px;
+    letter-spacing: -0.022em; line-height: 1.02; color: var(--ink);
+  }
+  .role{
+    font-family: var(--font-mono); font-size: 23px; font-weight: 500;
+    color: var(--ink-soft); margin-top: 20px; letter-spacing: 0.005em;
+  }
+  .body{
+    font-size: 27px; line-height: 1.42; color: var(--ink);
+    margin-top: 30px; max-width: 830px;
+  }
+  .foot{
+    position:absolute; left:80px; right:80px; bottom:52px;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-family: var(--font-mono); font-size: 18px; color: var(--ink-soft);
+  }
+  .foot b{ color: var(--layer-gold); font-weight:600; letter-spacing:0.04em; }
+  .foot .url{ color: var(--ink-soft); }
+</style>
+</head>
+<body>
+  <div class="blob blob-a"></div>
+  <div class="blob blob-b"></div>
+  <div class="blob blob-c"></div>
+
+  <div class="frame">
+    <div class="dots">
+      <span style="background:#6BAA9E"></span>
+      <span style="background:#3E8B7C"></span>
+      <span style="background:#1F6E60"></span>
+      <span style="background:#125349"></span>
+    </div>
+    <h1>Bilal Ahmed Mohammed</h1>
+    <div class="role">Digital Systems Delivery &amp; Implementation</div>
+    <p class="body">Statewide digital-system rollouts, AI-assisted automation, and Power&nbsp;BI reporting for the Tasmanian Department of Health.</p>
+  </div>
+
+  <div class="foot">
+    <span><b>REGIS</b> &nbsp;·&nbsp; Health Research Dashboards &nbsp;·&nbsp; Self-Built Tools</span>
+    <span class="url">bilal-mohammed20.github.io</span>
+  </div>
+</body>
+</html>

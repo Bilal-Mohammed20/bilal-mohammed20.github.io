@@ -41,9 +41,9 @@
   "sameAs": ["https://www.linkedin.com/in/bilal-ahmed-mohammed"]
 }
 </script>
-<link rel="stylesheet" href="fonts.css?v=20261112">
-<link rel="stylesheet" href="styles.css?v=20261112">
-<script src="analytics.js?v=20261112" defer></script>
+<link rel="stylesheet" href="fonts.css?v=20261112b">
+<link rel="stylesheet" href="styles.css?v=20261112b">
+<script src="analytics.js?v=20261112b" defer></script>
 </head>
 <body>
 <a href="#top" class="skip-link">Skip to content</a>
@@ -179,6 +179,13 @@
           <div class="tl-org">National Trust of Tasmania</div>
           <p class="tl-summary">Designed a public website and shot 360° VR heritage tours for a statewide heritage campaign.</p>
         </div>
+        <div class="tl-item is-concurrent">
+          <div class="tl-dot"></div>
+          <div class="tl-period">Aug 2020 — Mar 2021<span class="tl-concurrent-tag">Concurrent role</span></div>
+          <h3 class="tl-role">Director</h3>
+          <div class="tl-org">123D Studio Pty Ltd</div>
+          <p class="tl-summary">Co-founding director alongside two other directors, working concurrently as a website designer using WordPress and Squarespace.</p>
+        </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div class="tl-period">Apr 2017 — Nov 2019</div>
@@ -203,14 +210,47 @@
     </div>
   </section>
 
-  <!-- ============ PROJECTS ============ -->
-  <section class="projects" id="projects">
+  <!-- ============ PROCESS DESIGN (decision framework, kept separate from REGIS) ============ -->
+  <section id="process-design">
     <div class="container has-ghost-num">
       <span class="ghost-num" aria-hidden="true">03</span>
       <div class="section-head reveal">
-        <div class="section-kicker"><span class="num">03</span><span class="eyebrow">Tools & automation</span></div>
+        <div class="section-kicker"><span class="num">03</span><span class="eyebrow" id="decision-eyebrow"></span></div>
+        <h2 id="decision-title"></h2>
+        <p class="lede" id="decision-intro" style="margin-top:14px;"></p>
+      </div>
+      <div class="decision-block reveal">
+        <div class="decision-picker">
+          <span class="decision-picker-label">Trace a path:</span>
+          <button type="button" data-scenario="a">Scenario A · Corporate audit</button>
+          <button type="button" data-scenario="b">Scenario B · Single store</button>
+          <button type="button" data-scenario="c">Scenario C · Multi-store</button>
+          <button type="button" data-scenario="d">Scenario D · Wrong store</button>
+          <button type="button" id="decision-reset" title="Show the full flow again">↺ Reset</button>
+        </div>
+        <p class="vh" id="decision-text-alt">
+          Text summary of the diagram: a compliance report is first checked by type. Corporate audit reports are
+          accepted immediately with no follow-up. Store submission reports are checked against four scenarios:
+          Scenario A, a corporate audit, closes immediately; Scenario B, a single-store report, is accepted once
+          evidence is confirmed; Scenario C, a multi-store report, is accepted and then syncs every linked store;
+          Scenario D, submitted to the wrong store, is redirected to the correct one before following the same
+          evidence and sync steps as Scenario C. Use the "Trace a path" buttons above to read each scenario in
+          full detail.
+        </p>
+        <div class="decision-diagram" id="decision-diagram" role="img" aria-label="Decision framework diagram, see the preceding text summary for full detail" aria-describedby="decision-text-alt"></div>
+        <p class="decision-scroll-hint">← scroll to see the full flow →</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="projects" id="projects">
+    <div class="container has-ghost-num">
+      <span class="ghost-num" aria-hidden="true">04</span>
+      <div class="section-head reveal">
+        <div class="section-kicker"><span class="num">04</span><span class="eyebrow">Tools & automation</span></div>
         <h2>Tools built to remove the manual work</h2>
-        <p class="lede" style="margin-top:14px;">Tools built to close real operational gaps, from offline reconciliation checks to Power BI executive reporting and a monthly SharePoint sync. Four have a working demo inside the card, running on made-up sample data.</p>
+        <p class="lede" style="margin-top:14px;">Tools built to close real operational gaps: from lightweight offline reconciliation checks through to Power BI executive reporting, a monthly SharePoint sync, and its companion Power Apps tool. Four run entirely client-side with no server or install. A self-built support assistant, further down, answers questions about this site itself.</p>
       </div>
 
       <div id="project-featured" class="reveal">
@@ -246,9 +286,19 @@
           <p class="project-summary">Pulls structured answers out of completed Word-based TAS forms (including which checkbox was actually ticked) straight into a formatted Excel sheet.</p>
         </article>
         <article class="project-card" data-layer="automation">
+          <div class="project-tag">Shiny app</div>
+          <h3>Research Data Combiner</h3>
+          <p class="project-summary">Merges researcher and PI contact lists into one deduplicated, export-ready table.</p>
+        </article>
+        <article class="project-card" data-layer="automation">
           <div class="project-tag">Power Automate</div>
           <h3>Application Status Sync: Power Automate</h3>
           <p class="project-summary">A monthly flow that reconciles three separate Excel tracking tables into one always-current SharePoint list, upserting each record by Application ID.</p>
+        </article>
+        <article class="project-card" data-layer="automation">
+          <div class="project-tag">Power Apps · retired</div>
+          <h3>Application Email Log: Power Apps</h3>
+          <p class="project-summary">A Power Apps tool for logging every email exchanged about a research application and pulling up its full communication history in one view. Since retired.</p>
         </article>
       </div>
 
@@ -285,39 +335,6 @@
     </div>
   </section>
 
-  <!-- ============ PROCESS DESIGN (decision framework, kept separate from REGIS) ============ -->
-  <section id="process-design">
-    <div class="container has-ghost-num">
-      <span class="ghost-num" aria-hidden="true">04</span>
-      <div class="section-head reveal">
-        <div class="section-kicker"><span class="num">04</span><span class="eyebrow" id="decision-eyebrow"></span></div>
-        <h2 id="decision-title"></h2>
-        <p class="lede" id="decision-intro" style="margin-top:14px;"></p>
-      </div>
-      <div class="decision-block reveal">
-        <div class="decision-picker">
-          <span class="decision-picker-label">Trace a path:</span>
-          <button type="button" data-scenario="a">Scenario A · Corporate audit</button>
-          <button type="button" data-scenario="b">Scenario B · Single store</button>
-          <button type="button" data-scenario="c">Scenario C · Multi-store</button>
-          <button type="button" data-scenario="d">Scenario D · Wrong store</button>
-          <button type="button" id="decision-reset" title="Show the full flow again">↺ Reset</button>
-        </div>
-        <p class="vh" id="decision-text-alt">
-          Text summary of the diagram: a compliance report is first checked by type. Corporate audit reports are
-          accepted immediately with no follow-up. Store submission reports are checked against four scenarios:
-          Scenario A, a corporate audit, closes immediately; Scenario B, a single-store report, is accepted once
-          evidence is confirmed; Scenario C, a multi-store report, is accepted and then syncs every linked store;
-          Scenario D, submitted to the wrong store, is redirected to the correct one before following the same
-          evidence and sync steps as Scenario C. Use the "Trace a path" buttons above to read each scenario in
-          full detail.
-        </p>
-        <div class="decision-diagram" id="decision-diagram" role="img" aria-label="Decision framework diagram, see the preceding text summary for full detail" aria-describedby="decision-text-alt"></div>
-        <p class="decision-scroll-hint">← scroll to see the full flow →</p>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ COMPETENCIES + TOOLKIT ============ -->
   <section id="toolkit">
     <div class="container has-ghost-num">
@@ -349,7 +366,7 @@
     <div class="container">
       <div class="reveal">
         <div class="eyebrow" style="color:rgba(244,248,247,0.75);">Let's talk</div>
-        <h2 style="margin-top:14px;">Need someone to run a digital system end to end?</h2>
+        <h2 style="margin-top:14px;">A digital system that needs managing: the implementation, the people, the support, or the numbers?</h2>
         <p class="lede" id="contact-lede"></p>
         <div class="contact-actions" id="contact-actions"></div>
       </div>
@@ -363,7 +380,7 @@
 
 </main>
 
-<script src="data.js?v=20261112"></script>
-<script src="app.js?v=20261112"></script>
+<script src="data.js?v=20261112b"></script>
+<script src="app.js?v=20261112b"></script>
 </body>
 </html>
