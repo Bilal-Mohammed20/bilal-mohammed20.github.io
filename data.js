@@ -128,7 +128,13 @@ const CONTENT = {
         color: "var(--layer-violet)",
         tint: "var(--tint-violet)",
         title: "Drives platform issues through to a verified fix",
-        body: "I'm TAS Health's primary technical liaison with NSW Health and the platform vendor since 2022: replicating and testing issues myself in the REGIS sandpit environment, translating them into precise specifications, and providing stakeholders with a solution or workaround while driving the fix through to resolution. Issues are frequent and varied, from permissions and access faults to process-level problems, on a live, statewide, mandatory production system."
+        body: "I'm TAS Health's primary technical liaison with NSW Health and the platform vendor since 2022: replicating and testing issues myself in the REGIS sandpit environment, translating them into precise specifications, and providing stakeholders with a solution or workaround while driving the fix through to resolution. Issues are frequent and varied, from permissions and access faults to process-level problems, on a live, statewide, mandatory production system.",
+        riskBreakdown: {
+          situation: "A workflow fault let applications skip the Head of Department support step.",
+          risk: "Those applications moved on without the Head of Department's support being recorded.",
+          action: "Identified and investigated it the same day, escalated it to NSW Health and the vendor, and recommended a workaround.",
+          outcome: "Workaround approved and in place, so users are supported while the vendor works on the permanent fix."
+        }
       },
       {
         id: "resources",
@@ -139,7 +145,7 @@ const CONTENT = {
         body: "Every stakeholder gets support built for them, spanning TAS Health's internal departments and external research institutions, including the University of Tasmania.",
         points: [
           "<b>Who:</b> Site and Coordinating Principal Investigators, Researchers, Heads of Department, Chief Executives, Ethics Reviewers and Committee Members, and the Health Research Officers working alongside them",
-          "<b>Training:</b> sessions run in person, and one-on-one consultations resolve real submission problems",
+          "<b>Training:</b> sessions run in person, and one-on-one consultations resolve real submission problems. Recent sessions for research clinical staff covered the full REGIS application life cycle (October 2026) and the Health Research Metrics dashboard (November 2026)",
           "<b>Resource library:</b> FAQs, training and migration guides, all authored from scratch and published live on the Department of Health site",
           "<b>Web pages:</b> designs and maintains HRO's intranet and public pages directly, with editor and publisher access on the intranet, updating both regularly as stakeholder needs change"
         ],
@@ -219,18 +225,18 @@ const CONTENT = {
   projects: [
     {
       id: "consolidator",
-      title: "Health Research Activity Dashboard: Data Consolidator",
+      title: "Health Research Metrics Dashboard: Data Consolidator",
       tag: "Flagship build",
       layer: "automation",
       stack: ["R / Shiny", "JavaScript", "SheetJS", "Power BI"],
       liveLinks: [
-        { label: "Live performance dashboard (Power BI)", url: "https://app.powerbi.com/view?r=eyJrIjoiMmE1MzM4MjctYzg1Ni00OGMzLWI2OWUtOTg4MjViY2YwNzVmIiwidCI6IjEyNmZkODkzLTJmMWYtNGI1MC1iZWZmLTJmMTQ2Y2JiNzc0MCIsImMiOjEwfQ%3D%3D" },
+        { label: "Live Health Research Metrics dashboard (Power BI)", url: "https://app.powerbi.com/view?r=eyJrIjoiMmE1MzM4MjctYzg1Ni00OGMzLWI2OWUtOTg4MjViY2YwNzVmIiwidCI6IjEyNmZkODkzLTJmMWYtNGI1MC1iZWZmLTJmMTQ2Y2JiNzc0MCIsImMiOjEwfQ%3D%3D" },
         { label: "Featured on the Health Research Office page", url: "https://www.health.tas.gov.au/professionals/health-research-office" }
       ],
       summary: "A tool that reconciles multiple REGIS report exports against a master reference dataset into one clean, Power BI–ready file, turning a manual, error-prone reconciliation job into a five-minute upload.",
       problem: "A recurring, error-prone manual reconciliation job: multiple REGIS report exports needed to be checked against a manually-maintained master reference dataset (weekly, monthly, quarterly, and as needed), with site, LHD and district/region mappings that broke silently whenever a source export changed shape.",
       build: "Originally built as an R/Shiny app (with a hardcoded site-to-LHD lookup table covering every TAS Health site and department), and rebuilt as a standalone offline HTML tool that runs the entire pipeline client-side via SheetJS: no server, no install, works entirely offline. Also resolves Site through LHD through District down to Region, merges in a second REGIS governance download, and pre-computes a full Region × Sponsor Type × Study Type × Status cross-tab that sidesteps a specific Power BI limitation where zero-count combinations disappear from a matrix by default. Every join and edge case was validated end-to-end against real data before being signed off.",
-      impact: "One consolidated, Power BI–ready export (now a five-minute upload) replaces what used to be a manual cross-referencing exercise repeated weekly, monthly, quarterly, and as needed, with every transformation handled upstream in the tool itself. The resulting dashboard is published live on the Department of Health's own HRO page: not just a personal build, but something the department has adopted and put its name behind."
+      impact: "One consolidated, Power BI–ready export (now a five-minute upload) replaces what used to be a manual cross-referencing exercise repeated weekly, monthly, quarterly, and as needed, with every transformation handled upstream in the tool itself. The resulting dashboard is published live on the Department of Health's own HRO page: not just a personal build, but something the department has adopted and put its name behind. It is republished monthly on the HRO intranet and internet pages, alongside monthly reports to the research Directors; in the latest update, every figure was checked against source data."
     },
     {
       id: "annual-report",
