@@ -33,8 +33,8 @@
     impact:       'var(--layer-pink-text)'
   };
 
-  // The 5 builds that carry something to look at inside the expanded panel:
-  // four ship a real, click-to-try inline demo (see the ...DemoHTML / wire...Demo
+  // The 7 builds that carry something to look at inside the expanded panel:
+  // six ship a real, click-to-try inline demo (see the ...DemoHTML / wire...Demo
   // functions further down) and 'power-bi' ships a static sample visual instead
   // — it gets a "Sample visual inside" badge rather than "Live demo inside".
   // Everything else renders a plain "Read the full build" panel.
@@ -51,7 +51,7 @@
       .replace(/'/g, '&#39;');
   }
 
-  const LIVE_DEMO_IDS = ['annual-report', 'weekly-report', 'form-extractor', 'sharepoint-sync', 'power-bi'];
+  const LIVE_DEMO_IDS = ['research-combiner', 'annual-report', 'weekly-report', 'form-extractor', 'sharepoint-sync', 'email-log', 'power-bi'];
 
   // Wraps specific, hand-picked phrases in a bold coloured span — used to
   // surface genuine hard numbers as you read (Direction 2 from the colour
@@ -264,9 +264,10 @@
 
       const periodLine = `${role.period}${role.current ? '<span class="tl-current">Current</span>' : ''}${role.concurrent ? `<span class="tl-concurrent-tag">Concurrent role</span>` : ''}`;
 
-      // Single-fact roles with no detail bullets don't need the expand/collapse
-      // pattern built for multi-bullet roles — show the summary directly instead.
-      if (!role.details || role.details.length === 0) {
+      // Concurrent, single-fact roles (e.g. a short directorship run alongside a
+      // full-time role) don't need the expand/collapse pattern built for
+      // multi-bullet roles — show the summary directly instead.
+      if (role.concurrent && (!role.details || role.details.length === 0)) {
         item.innerHTML = `
           <div class="tl-dot"></div>
           <div class="tl-period">${periodLine}</div>
@@ -1790,7 +1791,7 @@
     // Display-order only (data.js untouched): lead with the tools most
     // directly tied to REGIS and statewide reporting scale, rather than
     // ordering by which demo happens to be most visually dynamic.
-    const DISPLAY_ORDER = ['power-bi', 'annual-report', 'weekly-report', 'sharepoint-sync', 'form-extractor'];
+    const DISPLAY_ORDER = ['power-bi', 'annual-report', 'weekly-report', 'sharepoint-sync', 'email-log', 'form-extractor', 'research-combiner'];
     rest.sort((a, b) => DISPLAY_ORDER.indexOf(a.id) - DISPLAY_ORDER.indexOf(b.id));
 
     if (flagship) {
