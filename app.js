@@ -1804,7 +1804,7 @@
     // Display-order only (data.js untouched): lead with the tools most
     // directly tied to REGIS and statewide reporting scale, rather than
     // ordering by which demo happens to be most visually dynamic.
-    const DISPLAY_ORDER = ['power-bi', 'annual-report', 'weekly-report', 'sharepoint-sync', 'email-log', 'form-extractor', 'research-combiner'];
+    const DISPLAY_ORDER = ['power-bi', 'annual-report', 'weekly-report', 'sharepoint-sync', 'tracking-workbook', 'email-log', 'form-extractor', 'research-combiner'];
     rest.sort((a, b) => DISPLAY_ORDER.indexOf(a.id) - DISPLAY_ORDER.indexOf(b.id));
 
     if (flagship) {
