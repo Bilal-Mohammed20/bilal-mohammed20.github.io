@@ -51,7 +51,7 @@
       .replace(/'/g, '&#39;');
   }
 
-  const LIVE_DEMO_IDS = ['research-combiner', 'annual-report', 'weekly-report', 'form-extractor', 'sharepoint-sync', 'email-log', 'power-bi'];
+  const LIVE_DEMO_IDS = ['research-combiner', 'annual-report', 'weekly-report', 'form-extractor', 'sharepoint-sync', 'tracking-workbook', 'email-log', 'power-bi'];
 
   // Wraps specific, hand-picked phrases in a bold coloured span — used to
   // surface genuine hard numbers as you read (Direction 2 from the colour
@@ -1558,6 +1558,169 @@
   }
 
   /* ---------------------------------------------------------
+     APPLICATION TRACKING WORKBOOK — live demo
+     Scaled-down illustration of the workbook's VBA logic: setting
+     a row's Status to Authorised asks for confirmation, moves the
+     row to the authorised sheet, adds it to the post-authorised
+     sheet unless it is already there, shows the milestone reminder
+     for new site applications, and supports undo — entirely
+     client-side on made-up sample rows.
+  --------------------------------------------------------- */
+  const TW_SEED = {
+    pre: [
+      { id: 'APP-3102', title: 'Wound care audit', type: 'SSA', status: 'Under Review' },
+      { id: 'APP-3118', title: 'Sleep study extension', type: 'Amendment', status: 'Request Further Info' },
+      { id: 'APP-3125', title: 'Falls prevention trial', type: 'SSA', status: 'Under Review' }
+    ],
+    auth: [
+      { id: 'APP-3050', title: 'Hand hygiene survey', type: 'SSA' }
+    ],
+    post: [
+      { id: 'APP-3050', title: 'Hand hygiene survey' },
+      { id: 'APP-3118', title: 'Sleep study extension' }
+    ]
+  };
+  const TW_STATUSES = ['Under Review', 'Request Further Info', 'Authorised'];
+
+  function twDemoHTML() {
+    return `
+      <div class="rc-demo tw-demo">
+        <div class="rc-demo-label">A scaled-down illustration of the workbook's move-on-status-change logic (not the full workbook), ported from VBA to JS and run here on made-up sample rows. Change a Status to Authorised to try it.</div>
+        <div class="rc-files">
+          <div class="rc-file">
+            <div class="rc-file-name">Pre Authorised</div>
+            <table class="rc-table"><thead><tr><th>Application ID</th><th>Type</th><th>Status</th></tr></thead><tbody class="tw-pre"></tbody></table>
+          </div>
+          <div class="rc-file">
+            <div class="rc-file-name">Authorised Projects &amp; Amendments</div>
+            <table class="rc-table"><thead><tr><th>Application ID</th><th>Type</th></tr></thead><tbody class="tw-auth"></tbody></table>
+          </div>
+          <div class="rc-file">
+            <div class="rc-file-name">Post Authorised</div>
+            <table class="rc-table"><thead><tr><th>Application ID</th><th>Title</th></tr></thead><tbody class="tw-post"></tbody></table>
+          </div>
+        </div>
+        <div class="tw-confirm" hidden role="alertdialog" aria-label="Confirm authorisation">
+          <span class="tw-confirm-text"></span>
+          <span class="tw-confirm-actions">
+            <button type="button" class="sp-sync-btn tw-yes">Yes, move it</button>
+            <button type="button" class="tw-btn tw-no">No</button>
+          </span>
+        </div>
+        <div class="rc-demo-actions">
+          <button type="button" class="tw-btn tw-undo" hidden>↶ Undo last move</button>
+          <button type="button" class="rc-reset-btn tw-reset" hidden>↺ Reset</button>
+        </div>
+        <div class="rc-log tw-log" aria-live="polite"></div>
+      </div>`;
+  }
+
+  function wireTwDemo(card) {
+    const preBody = $('.tw-pre', card);
+    if (!preBody) return;
+    const authBody = $('.tw-auth', card);
+    const postBody = $('.tw-post', card);
+    const confirmBox = $('.tw-confirm', card);
+    const confirmText = $('.tw-confirm-text', card);
+    const undoBtn = $('.tw-undo', card);
+    const resetBtn = $('.tw-reset', card);
+    const log = $('.tw-log', card);
+
+    let state, pending, lastMove;
+    const clone = (o) => JSON.parse(JSON.stringify(o));
+
+    function render(flashId) {
+      preBody.innerHTML = state.pre.length
+        ? state.pre.map((r, i) => `<tr><td>${r.id}</td><td>${r.type}</td><td>
+            <select class="tw-status" data-row="${i}" aria-label="Status for ${r.id}">
+              ${TW_STATUSES.map(s => `<option${s === r.status ? ' selected' : ''}>${s}</option>`).join('')}
+            </select></td></tr>`).join('')
+        : `<tr><td colspan="3" class="tw-empty">No applications waiting</td></tr>`;
+      authBody.innerHTML = state.auth.map(r => `<tr${r.id === flashId ? ' class="tw-new"' : ''}><td>${r.id}</td><td>${r.type}</td></tr>`).join('');
+      postBody.innerHTML = state.post.map(r => `<tr${r.id === flashId && lastMove && lastMove.addedPost ? ' class="tw-new"' : ''}><td>${r.id}</td><td>${r.title}</td></tr>`).join('');
+    }
+
+    function say(lines) {
+      log.innerHTML = lines.map((l, i) => `<div class="rc-log-line${i === 0 ? ' rc-log-summary' : ''}">${l}</div>`).join('');
+    }
+
+    function closeConfirm() { confirmBox.hidden = true; pending = null; }
+
+    function reset() {
+      state = clone(TW_SEED); pending = null; lastMove = null;
+      confirmBox.hidden = true; undoBtn.hidden = true; resetBtn.hidden = true;
+      log.innerHTML = '';
+      clearDemoDone(card);
+      render();
+    }
+
+    preBody.addEventListener('change', (e) => {
+      const sel = e.target.closest('.tw-status');
+      if (!sel) return;
+      const idx = Number(sel.dataset.row);
+      const row = state.pre[idx];
+      // An earlier unanswered prompt on another row: put that row's Status back first
+      if (pending && pending.idx !== idx) {
+        const prevSel = $(`.tw-status[data-row="${pending.idx}"]`, preBody);
+        if (prevSel) prevSel.value = pending.previous;
+      }
+      if (sel.value === 'Authorised') {
+        pending = { idx, previous: row.status };
+        confirmText.textContent = `Move ${row.id} to Authorised Projects & Amendments and remove it from Pre Authorised? It will also be added to Post Authorised if it isn't already there.`;
+        confirmBox.hidden = false;
+        $('.tw-yes', card).focus();
+      } else {
+        row.status = sel.value;
+        closeConfirm();
+      }
+    });
+
+    $('.tw-no', card).addEventListener('click', () => {
+      // Same as the workbook: answering No puts the Status back as it was
+      if (pending) say([`${state.pre[pending.idx].id}: cancelled, Status put back to "${pending.previous}".`]);
+      closeConfirm();
+      render();
+    });
+
+    $('.tw-yes', card).addEventListener('click', () => {
+      if (!pending) return;
+      const { idx, previous } = pending;
+      const row = state.pre[idx];
+      const alreadyInPost = state.post.some(p => p.id.trim() === row.id.trim());
+      lastMove = { row: Object.assign({}, row, { status: previous }), idx, addedPost: !alreadyInPost };
+      state.pre.splice(idx, 1);
+      state.auth.push({ id: row.id, title: row.title, type: row.type });
+      if (!alreadyInPost) state.post.push({ id: row.id, title: row.title });
+      closeConfirm();
+      render(row.id);
+      const lines = [`${row.id}: moved to Authorised Projects & Amendments and removed from Pre Authorised.`];
+      lines.push(alreadyInPost
+        ? `Duplicate skipped: ${row.id} already has an entry in Post Authorised, so no new row was added there.`
+        : `Added to Post Authorised.`);
+      if (row.type === 'SSA') lines.push(`Reminder: don't forget to add a milestone in REGIS for ${row.id}.`);
+      say(lines);
+      undoBtn.hidden = false; resetBtn.hidden = false;
+      markDemoDone(card);
+    });
+
+    undoBtn.addEventListener('click', () => {
+      if (!lastMove) return;
+      const { row, idx, addedPost } = lastMove;
+      state.auth = state.auth.filter(r => r.id !== row.id);
+      if (addedPost) state.post = state.post.filter(r => r.id !== row.id);
+      state.pre.splice(idx, 0, { id: row.id, title: row.title, type: row.type, status: row.status });
+      lastMove = null;
+      undoBtn.hidden = true;
+      clearDemoDone(card);
+      render();
+      say([`Undone: ${row.id} is back in Pre Authorised with its original Status.`]);
+    });
+
+    resetBtn.addEventListener('click', reset);
+    reset();
+  }
+
+  /* ---------------------------------------------------------
      APPLICATION EMAIL LOG — live demo
      Small illustration of the log-and-lookup concept: pick an
      application, see every email logged against it, log a new
@@ -1917,6 +2080,7 @@
           ${proj.id === 'weekly-report' ? wrDemoHTML() : ''}
           ${proj.id === 'form-extractor' ? feDemoHTML() : ''}
           ${proj.id === 'sharepoint-sync' ? spDemoHTML() : ''}
+          ${proj.id === 'tracking-workbook' ? twDemoHTML() : ''}
           ${proj.id === 'email-log' ? elDemoHTML() : ''}
           ${proj.id === 'power-bi' ? dashboardFlowHTML() : ''}
         </div>`;
@@ -1931,6 +2095,7 @@
       if (proj.id === 'weekly-report') wireWeeklyDemo(card);
       if (proj.id === 'form-extractor') wireFeDemo(card);
       if (proj.id === 'sharepoint-sync') wireSpDemo(card);
+      if (proj.id === 'tracking-workbook') wireTwDemo(card);
       if (proj.id === 'email-log') wireElDemo(card);
       if (LIVE_DEMO_IDS.includes(proj.id)) attachDemoBadge(card, btn, proj.id === 'power-bi' ? 'Sample visual inside' : 'Live demo inside');
       grid.appendChild(card);
