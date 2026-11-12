@@ -219,12 +219,12 @@ const CONTENT = {
   projects: [
     {
       id: "consolidator",
-      title: "Health Research Activity Dashboard: Data Consolidator",
+      title: "Health Research Metrics Dashboard: Data Consolidator",
       tag: "Flagship build",
       layer: "automation",
       stack: ["R / Shiny", "JavaScript", "SheetJS", "Power BI"],
       liveLinks: [
-        { label: "Live performance dashboard (Power BI)", url: "https://app.powerbi.com/view?r=eyJrIjoiMmE1MzM4MjctYzg1Ni00OGMzLWI2OWUtOTg4MjViY2YwNzVmIiwidCI6IjEyNmZkODkzLTJmMWYtNGI1MC1iZWZmLTJmMTQ2Y2JiNzc0MCIsImMiOjEwfQ%3D%3D" },
+        { label: "Live Health Research Metrics dashboard (Power BI)", url: "https://app.powerbi.com/view?r=eyJrIjoiMmE1MzM4MjctYzg1Ni00OGMzLWI2OWUtOTg4MjViY2YwNzVmIiwidCI6IjEyNmZkODkzLTJmMWYtNGI1MC1iZWZmLTJmMTQ2Y2JiNzc0MCIsImMiOjEwfQ%3D%3D" },
         { label: "Featured on the Health Research Office page", url: "https://www.health.tas.gov.au/professionals/health-research-office" }
       ],
       summary: "A tool that reconciles multiple REGIS report exports against a master reference dataset into one clean, Power BI–ready file, turning a manual, error-prone reconciliation job into a five-minute upload.",
