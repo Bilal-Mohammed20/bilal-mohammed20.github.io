@@ -305,6 +305,17 @@ const CONTENT = {
       impact: "Removes manual data entry and the errors that come with it; SharePoint stays a reliable, current single source of truth stitched together from three separate spreadsheets."
     },
     {
+      id: "tracking-workbook",
+      title: "Application Tracking Workbook: Data-Entry Automation",
+      tag: "Excel · VBA",
+      layer: "automation",
+      stack: ["Excel", "VBA", "Data validation", "Conditional formatting"],
+      summary: "A macro-enabled workbook that moves a research application between tracking sheets when its status changes, replacing manual copy-and-paste across three sheets.",
+      problem: "Applications and amendments were tracked across three sheets: before authorisation, authorised, and post-authorisation follow-up. Each time one was authorised, its row had to be copied to the second sheet, its key details re-entered on the third, and the original deleted, all by hand, with the risk of duplicates and missed follow-up steps.",
+      build: "Changing an application's status to Authorised asks for confirmation, then appends the row to the authorised sheet with its formatting, adds the project to the post-authorisation sheet unless it is already listed there, and removes it from the first sheet. A reminder pops up to add the REGIS milestone for new site applications, and again when a yearly report is marked as actioned. Before moving anything, it checks both destination sheets for stray entries sitting far below the real data and warns the user; Ctrl+Z reverses the whole move. Drop-down lists and date checks keep entries consistent, and a how-to sheet explains the steps for colleagues.",
+      impact: "One status change replaces a three-sheet copy, paste and delete, with duplicate checks and milestone reminders built in. Built, tested and in use with current data."
+    },
+    {
       id: "email-log",
       title: "Application Email Log: Power Apps",
       tag: "Power Apps · retired",
