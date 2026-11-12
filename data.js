@@ -130,6 +130,7 @@ const CONTENT = {
         title: "Drives platform issues through to a verified fix",
         body: "I'm TAS Health's primary technical liaison with NSW Health and the platform vendor since 2022: replicating and testing issues myself in the REGIS sandpit environment, translating them into precise specifications, and providing stakeholders with a solution or workaround while driving the fix through to resolution. Issues are frequent and varied, from permissions and access faults to process-level problems, on a live, statewide, mandatory production system.",
         riskBreakdown: {
+          label: "One recent example",
           situation: "A workflow fault let applications skip the Head of Department support step.",
           risk: "Those applications moved on without the Head of Department's support being recorded.",
           action: "Identified and investigated it the same day, escalated it to NSW Health and the vendor, and recommended a workaround.",

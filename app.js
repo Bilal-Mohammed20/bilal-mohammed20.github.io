@@ -351,7 +351,7 @@
       let riskHtml = '';
       if (pillar.riskBreakdown) {
         const r = pillar.riskBreakdown;
-        riskHtml = `<dl class="pillar-risk">
+        riskHtml = `${r.label ? `<div class="pillar-risk-label">${r.label}</div>` : ''}<dl class="pillar-risk">
           <div class="pillar-risk-row"><dt>Situation</dt><dd>${r.situation}</dd></div>
           <div class="pillar-risk-row"><dt>Risk</dt><dd>${r.risk}</dd></div>
           <div class="pillar-risk-row"><dt>Action</dt><dd>${r.action}</dd></div>
