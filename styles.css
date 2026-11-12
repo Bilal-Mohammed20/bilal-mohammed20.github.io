@@ -301,6 +301,7 @@ section{ padding: 108px 0; position: relative; }
   transition: color .2s var(--ease);
 }
 .hero-resume-link:hover{ color: var(--ink); }
+.hero-availability{ font-family: var(--font-mono); font-size: 13px; color: var(--ink-soft); margin-top: 18px; }
 .btn{
   font-family: var(--font-mono); font-size: 13.5px; letter-spacing:0.02em;
   padding: 13px 22px; border-radius: 100px; text-decoration:none; display:inline-flex; align-items:center; gap:8px;
@@ -378,7 +379,7 @@ section{ padding: 108px 0; position: relative; }
   padding: 0; margin-top: 8px;
 }
 .stats-grid{
-  display:grid; grid-template-columns: repeat(5, 1fr);
+  display:grid; grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
 }
 .stat-cell{
@@ -406,8 +407,8 @@ a.stat-cell:hover::before, a.stat-cell:focus-visible::before{ transform: scaleX(
   .stat-cell:nth-child(3){ border-right:none; }
 }
 @media (max-width: 860px){
-  .stats-grid{ grid-template-columns: repeat(2,1fr); }
-  .stat-cell:nth-child(2), .stat-cell:nth-child(4){ border-right:none; }
+  .stat-cell{ padding: 24px 14px; }
+  .stat-cell .stat-value{ font-size: 1.7rem; }
 }
 
 /* ============================================================
@@ -1285,7 +1286,6 @@ a.stat-cell:hover::before, a.stat-cell:focus-visible::before{ transform: scaleX(
 #footer-privacy{ flex-basis: 100%; font-size: 11px; color: rgba(244,248,247,0.68); }
 
 @media (max-width: 640px){
-  .stats-grid{ grid-template-columns: 1fr 1fr; }
   .contact-actions{ flex-direction:column; }
   .contact-actions .btn{ justify-content:center; }
   /* force a clean single-column stack on phones instead of an uneven 2-up
