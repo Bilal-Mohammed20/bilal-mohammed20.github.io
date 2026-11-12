@@ -41,9 +41,9 @@
   "sameAs": ["https://www.linkedin.com/in/bilal-ahmed-mohammed"]
 }
 </script>
-<link rel="stylesheet" href="fonts.css?v=20261112b">
-<link rel="stylesheet" href="styles.css?v=20261112b">
-<script src="analytics.js?v=20261112b" defer></script>
+<link rel="stylesheet" href="fonts.css?v=20261112d">
+<link rel="stylesheet" href="styles.css?v=20261112d">
+<script src="analytics.js?v=20261112d" defer></script>
 </head>
 <body>
 <a href="#top" class="skip-link">Skip to content</a>
@@ -75,9 +75,9 @@
       Bilal Ahmed Mohammed
     </a>
     <ul class="nav-links" id="nav-links">
-      <li><a href="#journey" data-layer="var(--layer-coral)">Journey</a></li>
-      <li><a href="#platform" data-layer="var(--layer-violet)">Platform</a></li>
+      <li><a href="#platform" data-layer="var(--layer-violet)">REGIS</a></li>
       <li><a href="#projects" data-layer="var(--layer-gold)">Builds</a></li>
+      <li><a href="#journey" data-layer="var(--layer-coral)">Journey</a></li>
       <li><a href="#toolkit" data-layer="var(--layer-teal)">Capabilities</a></li>
       <li><a href="#education" data-layer="var(--layer-violet)">Education</a></li>
       <li><a href="#contact" data-layer="var(--layer-pink)">Contact</a></li>
@@ -125,17 +125,17 @@
       <div class="hero-copy">
         <p class="eyebrow" id="hero-eyebrow">ICT Program Officer · Tasmanian Department of Health</p>
         <h1 id="hero-headline">I take digital systems from pilot to full-scale adoption.</h1>
-        <p class="lede" id="hero-sub">The Research Ethics &amp; Governance Information System (REGIS) is my proof: I designed and delivered its staged statewide rollout across 146 departments in Tasmania, and built the migration program, Power BI reporting, and automation that keep it running.</p>
+        <p class="lede" id="hero-sub">The Research Ethics &amp; Governance Information System (REGIS), which every research project in Tasmania's public health system must go through, is my proof: I designed and delivered its staged statewide rollout across 146 sites and departments in Tasmania, and built the migration program, Power BI reporting, and automation that keep it running.</p>
         <div class="hero-actions">
           <a href="#platform" class="btn btn-primary">See how I work →</a>
-          <a href="#contact" class="btn btn-ghost">Get in touch</a>
+          <a href="https://app.powerbi.com/view?r=eyJrIjoiMmE1MzM4MjctYzg1Ni00OGMzLWI2OWUtOTg4MjViY2YwNzVmIiwidCI6IjEyNmZkODkzLTJmMWYtNGI1MC1iZWZmLTJmMTQ2Y2JiNzc0MCIsImMiOjEwfQ%3D%3D" class="btn btn-ghost" target="_blank" rel="noopener">View live dashboard ↗</a>
           <a href="assets/Bilal-Ahmed-Mohammed-Resume.pdf" class="hero-resume-link" download>Download résumé (PDF) ↓</a>
         </div>
         <p class="hero-availability" id="hero-availability">Australian Permanent Resident · Open to roles in Victoria</p>
       </div>
       <div class="stack-visual" id="stack-visual" aria-hidden="true"></div>
     </div>
-    <a href="#journey" class="scroll-cue" aria-label="Scroll to content"><span></span></a>
+    <a href="#platform" class="scroll-cue" aria-label="Scroll to content"><span></span></a>
   </header>
 
   <!-- ============ STATS ============ -->
@@ -148,12 +148,118 @@
     <a href="#projects" class="proof-cue-link">See the work live: explore the published Power BI dashboard and project demos below <span class="proof-cue-arrow" aria-hidden="true">↓</span></a>
   </div>
 
-  <!-- ============ JOURNEY ============ -->
-  <section class="journey" id="journey">
+  <!-- ============ PLATFORM (flagship) ============ -->
+  <section class="platform" id="platform">
     <div class="container has-ghost-num">
       <span class="ghost-num" aria-hidden="true">01</span>
       <div class="section-head reveal">
-        <div class="section-kicker"><span class="num">01</span><span class="eyebrow">Professional journey</span></div>
+        <div class="section-kicker"><span class="num">01</span><span class="eyebrow" id="platform-eyebrow"></span></div>
+        <h2 id="platform-title"></h2>
+        <p class="lede" id="platform-intro" style="margin-top:14px;"></p>
+      </div>
+      <div class="pillar-grid reveal-stagger" id="pillar-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="projects" id="projects">
+    <div class="container has-ghost-num">
+      <span class="ghost-num" aria-hidden="true">02</span>
+      <div class="section-head reveal">
+        <div class="section-kicker"><span class="num">02</span><span class="eyebrow">Tools & automation</span></div>
+        <h2>Tools built to remove the manual work</h2>
+        <p class="lede" style="margin-top:14px;">Tools built to close real operational gaps: from lightweight offline reconciliation checks through to Power BI executive reporting, a monthly SharePoint sync, and its companion Power Apps tool. Four run entirely client-side with no server or install. A self-built support assistant, further down, answers questions about this site itself.</p>
+      </div>
+
+      <div id="project-featured" class="reveal">
+        <article class="project-card project-featured-card" data-layer="automation">
+          <div class="pf-main">
+            <div class="project-tag">Flagship build</div>
+            <h3>Health Research Activity Dashboard: Data Consolidator</h3>
+            <p class="project-summary">A tool that reconciles multiple REGIS report exports against a master reference dataset into one clean, Power BI–ready file, turning a manual, error-prone reconciliation job into a five-minute upload.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="project-filters reveal" id="project-filters"></div>
+      <div class="project-grid reveal-stagger is-collapsed" id="project-grid">
+        <article class="project-card" data-layer="insight">
+          <div class="project-tag">Offline HTML app</div>
+          <h3>Annual Report Reconciliation Tool</h3>
+          <p class="project-summary">Cross-checks MS Teams tracking sheets against REGIS overdue-progress-report data and exports the reconciled result straight into Excel and Word.</p>
+        </article>
+        <article class="project-card" data-layer="insight">
+          <div class="project-tag">Offline HTML app</div>
+          <h3>Weekly Report Generator</h3>
+          <p class="project-summary">Processes multiple REGIS report exports across five reporting sections into a consistent weekly report.</p>
+        </article>
+        <article class="project-card" data-layer="systems">
+          <div class="project-tag">Power BI · multi-page report</div>
+          <h3>REGIS Executive Dashboards</h3>
+          <p class="project-summary">Multi-page Power BI reporting for REGIS (from statewide summary views down to a live, filterable study register), built hands-on for both senior leadership and the team's own internal reporting.</p>
+        </article>
+        <article class="project-card" data-layer="automation">
+          <div class="project-tag">R + VBA · built twice</div>
+          <h3>TAS Form Extractor</h3>
+          <p class="project-summary">Pulls structured answers out of completed Word-based TAS forms (including which checkbox was actually ticked) straight into a formatted Excel sheet.</p>
+        </article>
+        <article class="project-card" data-layer="automation">
+          <div class="project-tag">Shiny app</div>
+          <h3>Research Data Combiner</h3>
+          <p class="project-summary">Merges researcher and PI contact lists into one deduplicated, export-ready table.</p>
+        </article>
+        <article class="project-card" data-layer="automation">
+          <div class="project-tag">Power Automate</div>
+          <h3>Application Status Sync: Power Automate</h3>
+          <p class="project-summary">A monthly flow that reconciles three separate Excel tracking tables into one always-current SharePoint list, upserting each record by Application ID.</p>
+        </article>
+        <article class="project-card" data-layer="automation">
+          <div class="project-tag">Power Apps · retired</div>
+          <h3>Application Email Log: Power Apps</h3>
+          <p class="project-summary">A Power Apps tool for logging every email exchanged about a research application and pulling up its full communication history in one view. Since retired.</p>
+        </article>
+      </div>
+
+      <button type="button" class="project-show-all" id="project-show-all">Show all builds ▾</button>
+      <!-- Featured: REGIS Assistant, closing highlight of this section, not a second flagship -->
+      <div class="assistant-feature reveal">
+        <div class="af-head">
+          <div class="eyebrow" id="af-eyebrow"></div>
+        </div>
+        <h3 id="af-title"></h3>
+        <p class="af-intro" id="af-intro"></p>
+        <div class="af-stats" id="af-stats"></div>
+        <p class="af-body" id="af-body"></p>
+
+        <div class="af-demo">
+          <p class="af-demo-note" id="af-demo-note"></p>
+          <div class="af-chat" id="af-chat">
+            <div class="af-chat-header">
+              <span class="af-status"><span class="af-status-dot"></span>Ready to help</span>
+              <button type="button" class="af-clear-btn" id="af-clear">Clear chat</button>
+            </div>
+            <!-- data-clarity-mask: whatever a visitor types here renders as ordinary
+                 page text, which Clarity's default "Balanced" mode DOES capture in
+                 session replays (it only auto-masks input boxes, numbers and email
+                 addresses). Masking the transcript keeps the footer's privacy claim true. -->
+            <div class="af-messages" id="af-messages" data-clarity-mask="true"></div>
+            <div class="af-chips" id="af-chips"></div>
+            <form class="af-input-row" id="af-form">
+              <input type="text" id="af-input" class="af-input" placeholder="Ask something about Bilal…" aria-label="Ask something about Bilal" autocomplete="off">
+              <button type="submit" class="af-send">Ask</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ JOURNEY ============ -->
+  <section class="journey" id="journey">
+    <div class="container has-ghost-num">
+      <span class="ghost-num" aria-hidden="true">03</span>
+      <div class="section-head reveal">
+        <div class="section-kicker"><span class="num">03</span><span class="eyebrow">Professional journey</span></div>
         <h2>From frontline operations to statewide digital delivery</h2>
         <p class="lede" style="margin-top:14px;">One throughline across a varied career: figuring out what stakeholders actually need, and delivering it through project management, data analysis, stakeholder engagement, and hands-on building.</p>
       </div>
@@ -197,29 +303,16 @@
     </div>
   </section>
 
-  <!-- ============ PLATFORM (flagship) ============ -->
-  <section class="platform" id="platform">
-    <div class="container has-ghost-num">
-      <span class="ghost-num" aria-hidden="true">02</span>
-      <div class="section-head reveal">
-        <div class="section-kicker"><span class="num">02</span><span class="eyebrow" id="platform-eyebrow"></span></div>
-        <h2 id="platform-title"></h2>
-        <p class="lede" id="platform-intro" style="margin-top:14px;"></p>
-      </div>
-      <div class="pillar-grid reveal-stagger" id="pillar-grid"></div>
-    </div>
-  </section>
-
   <!-- ============ PROCESS DESIGN (decision framework, kept separate from REGIS) ============ -->
   <section id="process-design">
     <div class="container has-ghost-num">
-      <span class="ghost-num" aria-hidden="true">03</span>
+      <span class="ghost-num" aria-hidden="true">04</span>
       <div class="section-head reveal">
-        <div class="section-kicker"><span class="num">03</span><span class="eyebrow" id="decision-eyebrow"></span></div>
+        <div class="section-kicker"><span class="num">04</span><span class="eyebrow" id="decision-eyebrow"></span></div>
         <h2 id="decision-title"></h2>
         <p class="lede" id="decision-intro" style="margin-top:14px;"></p>
       </div>
-      <div class="decision-block reveal">
+      <div class="decision-block reveal is-collapsed" id="decision-block">
         <div class="decision-picker">
           <span class="decision-picker-label">Trace a path:</span>
           <button type="button" data-scenario="a">Scenario A · Corporate audit</button>
@@ -238,99 +331,8 @@
           full detail.
         </p>
         <div class="decision-diagram" id="decision-diagram" role="img" aria-label="Decision framework diagram, see the preceding text summary for full detail" aria-describedby="decision-text-alt"></div>
+        <button type="button" class="decision-expand" id="decision-expand" aria-expanded="false">Show the full diagram ▾</button>
         <p class="decision-scroll-hint">← scroll to see the full flow →</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ PROJECTS ============ -->
-  <section class="projects" id="projects">
-    <div class="container has-ghost-num">
-      <span class="ghost-num" aria-hidden="true">04</span>
-      <div class="section-head reveal">
-        <div class="section-kicker"><span class="num">04</span><span class="eyebrow">Tools & automation</span></div>
-        <h2>Tools built to remove the manual work</h2>
-        <p class="lede" style="margin-top:14px;">Tools built to close real operational gaps: from lightweight offline reconciliation checks through to Power BI executive reporting, a monthly SharePoint sync, and its companion Power Apps tool. Four run entirely client-side with no server or install. A self-built support assistant, further down, answers questions about this site itself.</p>
-      </div>
-
-      <div id="project-featured" class="reveal">
-        <article class="project-card project-featured-card" data-layer="automation">
-          <div class="pf-main">
-            <div class="project-tag">Flagship build</div>
-            <h3>Health Research Activity Dashboard: Data Consolidator</h3>
-            <p class="project-summary">A tool that reconciles multiple REGIS report exports against a master reference dataset into one clean, Power BI–ready file, turning a manual, error-prone reconciliation job into a five-minute upload.</p>
-          </div>
-        </article>
-      </div>
-
-      <div class="project-filters reveal" id="project-filters"></div>
-      <div class="project-grid reveal-stagger" id="project-grid">
-        <article class="project-card" data-layer="insight">
-          <div class="project-tag">Offline HTML app</div>
-          <h3>Annual Report Reconciliation Tool</h3>
-          <p class="project-summary">Cross-checks MS Teams tracking sheets against REGIS overdue-progress-report data and exports the reconciled result straight into Excel and Word.</p>
-        </article>
-        <article class="project-card" data-layer="insight">
-          <div class="project-tag">Offline HTML app</div>
-          <h3>Weekly Report Generator</h3>
-          <p class="project-summary">Processes multiple REGIS report exports across five reporting sections into a consistent weekly report.</p>
-        </article>
-        <article class="project-card" data-layer="systems">
-          <div class="project-tag">Power BI · multi-page report</div>
-          <h3>REGIS Executive Dashboards</h3>
-          <p class="project-summary">Multi-page Power BI reporting for REGIS (from statewide summary views down to a live, filterable study register), built hands-on for both senior leadership and the team's own internal reporting.</p>
-        </article>
-        <article class="project-card" data-layer="automation">
-          <div class="project-tag">R + VBA · built twice</div>
-          <h3>TAS Form Extractor</h3>
-          <p class="project-summary">Pulls structured answers out of completed Word-based TAS forms (including which checkbox was actually ticked) straight into a formatted Excel sheet.</p>
-        </article>
-        <article class="project-card" data-layer="automation">
-          <div class="project-tag">Shiny app</div>
-          <h3>Research Data Combiner</h3>
-          <p class="project-summary">Merges researcher and PI contact lists into one deduplicated, export-ready table.</p>
-        </article>
-        <article class="project-card" data-layer="automation">
-          <div class="project-tag">Power Automate</div>
-          <h3>Application Status Sync: Power Automate</h3>
-          <p class="project-summary">A monthly flow that reconciles three separate Excel tracking tables into one always-current SharePoint list, upserting each record by Application ID.</p>
-        </article>
-        <article class="project-card" data-layer="automation">
-          <div class="project-tag">Power Apps · retired</div>
-          <h3>Application Email Log: Power Apps</h3>
-          <p class="project-summary">A Power Apps tool for logging every email exchanged about a research application and pulling up its full communication history in one view. Since retired.</p>
-        </article>
-      </div>
-
-      <!-- Featured: REGIS Assistant, closing highlight of this section, not a second flagship -->
-      <div class="assistant-feature reveal">
-        <div class="af-head">
-          <div class="eyebrow" id="af-eyebrow"></div>
-        </div>
-        <h3 id="af-title"></h3>
-        <p class="af-intro" id="af-intro"></p>
-        <div class="af-stats" id="af-stats"></div>
-        <p class="af-body" id="af-body"></p>
-
-        <div class="af-demo">
-          <p class="af-demo-note" id="af-demo-note"></p>
-          <div class="af-chat" id="af-chat">
-            <div class="af-chat-header">
-              <span class="af-status"><span class="af-status-dot"></span>Ready to help</span>
-              <button type="button" class="af-clear-btn" id="af-clear">Clear chat</button>
-            </div>
-            <!-- data-clarity-mask: whatever a visitor types here renders as ordinary
-                 page text, which Clarity's default "Balanced" mode DOES capture in
-                 session replays (it only auto-masks input boxes, numbers and email
-                 addresses). Masking the transcript keeps the footer's privacy claim true. -->
-            <div class="af-messages" id="af-messages" data-clarity-mask="true"></div>
-            <div class="af-chips" id="af-chips"></div>
-            <form class="af-input-row" id="af-form">
-              <input type="text" id="af-input" class="af-input" placeholder="Ask something about Bilal…" aria-label="Ask something about Bilal" autocomplete="off">
-              <button type="submit" class="af-send">Ask</button>
-            </form>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -380,7 +382,7 @@
 
 </main>
 
-<script src="data.js?v=20261112b"></script>
-<script src="app.js?v=20261112b"></script>
+<script src="data.js?v=20261112d"></script>
+<script src="app.js?v=20261112d"></script>
 </body>
 </html>

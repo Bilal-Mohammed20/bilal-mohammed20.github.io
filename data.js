@@ -15,11 +15,11 @@ const CONTENT = {
     linkedin: "https://www.linkedin.com/in/bilal-ahmed-mohammed",
     linkedinLabel: "linkedin.com/in/bilal-ahmed-mohammed",
     resumeUrl: "assets/Bilal-Ahmed-Mohammed-Resume.pdf",
-    availability: "Australian Permanent Resident · Open to relocating to Victoria for the right opportunity",
+    availability: "Australian Permanent Resident · Open to roles in Victoria",
     heroAvailability: "Australian Permanent Resident · Open to roles in Victoria",
     heroEyebrow: "ICT Program Officer · Tasmanian Department of Health",
     heroHeadline: "I take digital systems from pilot to full-scale adoption.",
-    heroSub: "The Research Ethics & Governance Information System (REGIS) is my proof: I designed and delivered its staged statewide rollout across 146 departments in Tasmania, and built the migration program, Power BI reporting, and automation that keep it running.",
+    heroSub: "The Research Ethics & Governance Information System (REGIS), which every research project in Tasmania's public health system must go through, is my proof: I designed and delivered its staged statewide rollout across 146 sites and departments in Tasmania, and built the migration program, Power BI reporting, and automation that keep it running.",
     stackLayers: [
       { id: "requirements", label: "Requirements", sub: "Stakeholder mapping & needs, workflows, policy", color: "var(--layer-coral)" },
       { id: "systems", label: "Systems", sub: "REGIS, platform config, migration", color: "var(--layer-violet)" },
@@ -30,7 +30,7 @@ const CONTENT = {
   },
 
   stats: [
-    { value: "146", label: "Departments across 4 regions", href: "#journey-regis-rollout" },
+    { value: "146", label: "Sites and departments across 4 regions", href: "#journey-regis-rollout" },
     { value: "650+", label: "Research projects administered in REGIS statewide" },
     { value: "150+", label: "Studies migrated", href: "#pillar-migration" },
     { value: "Since 2022", label: "NSW Health/vendor relationship", href: "#pillar-vendor" },
@@ -45,9 +45,9 @@ const CONTENT = {
       layer: "insight",
       current: true,
       id: "journey-regis-rollout",
-      summary: "Administer REGIS for the Department of Health, Tasmania (TAS Health): its structure, its vendor relationship, and the statewide adoption program built on top of it. <a href=\"#platform\">Full REGIS case study below&nbsp;↓</a>",
+      summary: "Administer REGIS for the Department of Health, Tasmania (TAS Health): its structure, its vendor relationship, and the statewide adoption program built on top of it. <a href=\"#platform\">Full REGIS case study above&nbsp;↑</a>",
       details: [
-        "Designed and delivered a staged statewide rollout of both the Research Governance and Research Ethics modules across 146 departments and supporting departments in the South, North, North West, and Statewide Services regions, piloting first with the largest departments in the South and North to test the platform and validate user acceptance before full rollout. REGIS is now the sole system for research ethics and governance submissions across TAS Health, replacing the prior paper-based process entirely",
+        "Designed and delivered a staged statewide rollout of both the Research Governance and Research Ethics modules across 146 Department of Health sites and departments in the South, North, North West, and Statewide Services regions, piloting first with the largest departments in the South and North to test the platform and validate user acceptance before full rollout. REGIS is now the sole system for research ethics and governance submissions across TAS Health, replacing the prior paper-based process entirely",
         "TAS Health's primary technical liaison with NSW Health and the platform vendor since 2022: replicating and testing issues myself in the REGIS sandpit environment, translating them into precise specifications, and providing stakeholders with a solution or workaround while driving the fix through to resolution. Issues are frequent and varied, from permissions and access faults to process-level problems, on a live, statewide, mandatory production system",
         "Piloted new REGIS features including Teletrial functionality, and designed the milestone-based workaround Researchers and Health Research Officers still rely on for TAS annual and progress reports, since REGIS can only route these to the Human Research Ethics Committee (HREC), including a decision tree and cheat sheets used statewide",
         "Designed and delivered the migration process that's grown paper-based projects from 2 pilot studies to 150+ and counting, authoring the published migration guides and providing direct, one-on-one support to researchers and departments throughout. Personally identified a structural risk in the original process: migration access defaulted to whichever individual first registered a project, who for multi-site or national studies could sit in NSW Health, ACT Health, or another jurisdiction entirely and could leave or become unreachable. Negotiated a fix with NSW Health so access now defaults to research coordinators instead",
@@ -120,7 +120,7 @@ const CONTENT = {
         color: "var(--layer-coral)",
         tint: "var(--tint-coral)",
         title: "Built the stakeholder structure REGIS runs on",
-        body: "TAS Health's stakeholders, 146 departments across four regions (South, North, North West, and Statewide Services), are mapped directly into REGIS, built from a blank slate. I designed and delivered this as a staged rollout, piloting first with the largest departments in the South and North to test the platform and validate user acceptance before extending statewide. It's what determines which project centre and site a researcher can even select when registering a study, and it's kept current every time a department changes."
+        body: "TAS Health's stakeholders, 146 sites and departments across four regions (South, North, North West, and Statewide Services), are mapped directly into REGIS, built from a blank slate. I designed and delivered this as a staged rollout, piloting first with the largest departments in the South and North to test the platform and validate user acceptance before extending statewide. It's what determines which project centre and site a researcher can even select when registering a study, and it's kept current every time a department changes."
       },
       {
         id: "vendor",
@@ -136,7 +136,13 @@ const CONTENT = {
         color: "var(--layer-gold)",
         tint: "var(--tint-gold)",
         title: "Trains and supports every stakeholder",
-        body: "Every stakeholder gets support built for them: Site and Coordinating Principal Investigators, Researchers, Heads of Department, Chief Executives, Ethics Reviewers and Committee Members, and the Health Research Officers working alongside them, spanning TAS Health's internal departments and external research institutions, including the University of Tasmania. Training sessions run in person, one-on-one consultations resolve real submission problems, and a written resource library covering FAQs, training and migration, all authored from scratch and published live on the Department of Health site. Also designs and maintains HRO's intranet and public pages directly, with editor and publisher access on the intranet, updating both regularly as stakeholder needs change.",
+        body: "Every stakeholder gets support built for them, spanning TAS Health's internal departments and external research institutions, including the University of Tasmania.",
+        points: [
+          "<b>Who:</b> Site and Coordinating Principal Investigators, Researchers, Heads of Department, Chief Executives, Ethics Reviewers and Committee Members, and the Health Research Officers working alongside them",
+          "<b>Training:</b> sessions run in person, and one-on-one consultations resolve real submission problems",
+          "<b>Resource library:</b> FAQs, training and migration guides, all authored from scratch and published live on the Department of Health site",
+          "<b>Web pages:</b> designs and maintains HRO's intranet and public pages directly, with editor and publisher access on the intranet, updating both regularly as stakeholder needs change"
+        ],
         links: [
           { label: "TAS-Specific FAQs", url: "https://www.health.tas.gov.au/publications/regis-tas-specific-faqs" },
           { label: "Training Resources", url: "https://www.health.tas.gov.au/publications/regis-training-resources" },
@@ -184,15 +190,15 @@ const CONTENT = {
     chips: ["What does Bilal do?", "What has he built?", "Does he know Power BI?", "What certifications does he have?", "Is he open to relocating?", "What is this chat box?"],
     qa: [
       { q: "What does Bilal do?", cat: "Role & Responsibilities", a: "Bilal takes digital systems from pilot to full-scale adoption, currently as ICT Program Officer at the Tasmanian Department of Health, with REGIS as his primary proof. He wears a lot of hats delivering that, genuinely cross-functional, not just a platform administrator:", list: [
-          "<b>Project Manager:</b> manages full implementation of REGIS for TAS Health, from statewide rollout through the ongoing migration program",
-          "<b>Business/Systems Analyst:</b> translates stakeholder needs into system requirements across REGIS and the other platforms he works on",
-          "<b>Stakeholder Mapping Lead:</b> maps TAS Health's regions, departments, sites and Heads of Department into the org structures his systems run on",
-          "<b>Platform Administrator:</b> administers REGIS, Vision6 and other systems for TAS Health, covering structure, configuration, and vendor relationship",
-          "<b>Data &amp; Reporting Analyst:</b> Power BI dashboards hands-on, plus data and reporting duties for the wider team",
-          "<b>Trainer &amp; Change Manager:</b> runs training sessions and one-on-one consultations, authors the resource library, leads adoption of new tools and processes",
-          "<b>Single Point of Contact:</b> TAS Health's primary contact, diagnosing platform issues precisely enough for NSW Health and the vendor to resolve",
-          "<b>Automation Developer:</b> R, VBA, Power Automate, JavaScript. Specifies requirements, directs the AI-assisted build",
-          "<b>Process Designer:</b> designs migration processes, decision trees and workaround logic stakeholders rely on daily"
+          "<b>Project delivery:</b> manages full implementation of REGIS for TAS Health, from statewide rollout through the ongoing migration program",
+          "<b>Business and systems analysis:</b> translates stakeholder needs into system requirements across REGIS and the other platforms he works on",
+          "<b>Stakeholder mapping:</b> maps TAS Health's regions, departments, sites and Heads of Department into the org structures his systems run on",
+          "<b>Platform administration:</b> administers REGIS, Vision6 and other systems for TAS Health, covering structure, configuration, and vendor relationship",
+          "<b>Data and reporting:</b> Power BI dashboards hands-on, plus data and reporting duties for the wider team",
+          "<b>Training and change management:</b> runs training sessions and one-on-one consultations, authors the resource library, leads adoption of new tools and processes",
+          "<b>Single point of contact:</b> TAS Health's primary contact, diagnosing platform issues precisely enough for NSW Health and the vendor to resolve",
+          "<b>Automation:</b> R, VBA, Power Automate, JavaScript. Specifies requirements, directs the AI-assisted build",
+          "<b>Process design:</b> designs migration processes, decision trees and workaround logic stakeholders rely on daily"
         ], k: ["what does bilal do", "his role", "job title", "what do you do", "current role", "what is his job", "occupation", "project manager", "responsibilities", "roles", "hats"], follow: ["Has he worked nationally?", "What is REGIS?", "What has he built?"] },
       { q: "Has he worked nationally?", cat: "Role & Responsibilities", a: "Yes, he represents TAS Health on the Technical Advisory Group (TechAG) for the National One Stop Shop (NOSS) Program, supporting TAS Health's transition to the NOSS platform.", k: ["national", "noss", "one stop shop", "technical advisory group", "techag", "national work"], follow: ["What does Bilal do?", "What is REGIS?"] },
       { q: "What is REGIS?", cat: "Background & Logistics", a: "The Research Ethics and Governance Information System (REGIS) is the online portal for submitting, approving, monitoring and managing human research projects, used by investigators, sponsors, site administrators, Human Research Ethics Committees and Research Governance Offices. Every health and medical research project using Tasmania's publicly funded health system must go through it. Bilal administers REGIS for TAS Health: the org structure, the vendor relationship, and the resources that teach stakeholders to use it.", k: ["what is regis", "regis meaning", "explain regis", "regis platform", "define regis"], follow: ["What does Bilal do?", "Has he worked nationally?"] },
