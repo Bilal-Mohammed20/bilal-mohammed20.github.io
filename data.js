@@ -130,6 +130,7 @@ const CONTENT = {
         title: "Drives platform issues through to a verified fix",
         body: "I'm TAS Health's primary technical liaison with NSW Health and the platform vendor since 2022: replicating and testing issues myself in the REGIS sandpit environment, translating them into precise specifications, and providing stakeholders with a solution or workaround while driving the fix through to resolution. Issues are frequent and varied, from permissions and access faults to process-level problems, on a live, statewide, mandatory production system.",
         riskBreakdown: {
+          label: "One recent example",
           situation: "A workflow fault let applications skip the Head of Department support step.",
           risk: "Those applications moved on without the Head of Department's support being recorded.",
           action: "Identified and investigated it the same day, escalated it to NSW Health and the vendor, and recommended a workaround.",
@@ -237,6 +238,17 @@ const CONTENT = {
       problem: "A recurring, error-prone manual reconciliation job: multiple REGIS report exports needed to be checked against a manually-maintained master reference dataset (weekly, monthly, quarterly, and as needed), with site, LHD and district/region mappings that broke silently whenever a source export changed shape.",
       build: "Originally built as an R/Shiny app (with a hardcoded site-to-LHD lookup table covering every TAS Health site and department), and rebuilt as a standalone offline HTML tool that runs the entire pipeline client-side via SheetJS: no server, no install, works entirely offline. Also resolves Site through LHD through District down to Region, merges in a second REGIS governance download, and pre-computes a full Region × Sponsor Type × Study Type × Status cross-tab that sidesteps a specific Power BI limitation where zero-count combinations disappear from a matrix by default. Every join and edge case was validated end-to-end against real data before being signed off.",
       impact: "One consolidated, Power BI–ready export (now a five-minute upload) replaces what used to be a manual cross-referencing exercise repeated weekly, monthly, quarterly, and as needed, with every transformation handled upstream in the tool itself. The resulting dashboard is published live on the Department of Health's own HRO page: not just a personal build, but something the department has adopted and put its name behind. It is republished monthly on the HRO intranet and internet pages, alongside monthly reports to the research Directors; in the latest update, every figure was checked against source data."
+    },
+    {
+      id: "folderlens",
+      title: "FolderLens: Shared Folder Map & Duplicate Finder",
+      tag: "Offline HTML app · prototype",
+      layer: "insight",
+      stack: ["JavaScript", "Offline HTML", "Excel export"],
+      summary: "A single offline file that turns a plain folder listing into a searchable map of a team's shared folders, flagging duplicates, version copies, empty folders and naming slips so the team can tidy them up.",
+      problem: "A team's shared MS Teams folders had grown over years: copies of the same document in several places, several versions of one file, empty folders and inconsistent names. Nobody could see the whole structure at once, so tidying up meant clicking through folder by folder.",
+      build: "The user exports a folder listing from Windows as a text file and opens it in FolderLens, which runs entirely in the browser with nothing to install and never touches the files themselves. It builds a map of every folder with file counts and sizes, offers search and browse across all file names, groups identical copies and versions of the same document, lists empty folders, and points out naming problems such as spelling slips and mixed numbering styles. Results export to Excel, including a duplicates sheet with a Keep or Move choice for each file and a folder-level list for deciding what to archive. I specified the logic and tested it against a real listing of more than 1,200 files; AI wrote the code.",
+      impact: "Proposed as a service improvement, approved by management, and delivered as a working prototype on schedule. It gives the team one view of the whole folder structure and a ready-made list of what to merge, move or archive."
     },
     {
       id: "annual-report",

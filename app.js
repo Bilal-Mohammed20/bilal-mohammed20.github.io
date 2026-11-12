@@ -351,7 +351,7 @@
       let riskHtml = '';
       if (pillar.riskBreakdown) {
         const r = pillar.riskBreakdown;
-        riskHtml = `<dl class="pillar-risk">
+        riskHtml = `${r.label ? `<div class="pillar-risk-label">${r.label}</div>` : ''}<dl class="pillar-risk">
           <div class="pillar-risk-row"><dt>Situation</dt><dd>${r.situation}</dd></div>
           <div class="pillar-risk-row"><dt>Risk</dt><dd>${r.risk}</dd></div>
           <div class="pillar-risk-row"><dt>Action</dt><dd>${r.action}</dd></div>
@@ -1804,7 +1804,7 @@
     // Display-order only (data.js untouched): lead with the tools most
     // directly tied to REGIS and statewide reporting scale, rather than
     // ordering by which demo happens to be most visually dynamic.
-    const DISPLAY_ORDER = ['power-bi', 'annual-report', 'weekly-report', 'sharepoint-sync', 'tracking-workbook', 'email-log', 'form-extractor', 'research-combiner'];
+    const DISPLAY_ORDER = ['power-bi', 'folderlens', 'annual-report', 'weekly-report', 'sharepoint-sync', 'tracking-workbook', 'email-log', 'form-extractor', 'research-combiner'];
     rest.sort((a, b) => DISPLAY_ORDER.indexOf(a.id) - DISPLAY_ORDER.indexOf(b.id));
 
     if (flagship) {

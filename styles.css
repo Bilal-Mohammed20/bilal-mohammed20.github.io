@@ -1655,3 +1655,10 @@ a.stat-cell:hover::before, a.stat-cell:focus-visible::before{ transform: scaleX(
   .edu-row{ padding: 14px 0; }
   .edu-row:nth-child(2){ border-top: 1px solid var(--line); }
 }
+
+/* Small heading above an example box, so it reads as a sample rather than the whole record */
+.pillar-risk-label{
+  margin-top: 16px; font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--pillar-color-text, var(--ink-soft));
+}
+.pillar-risk-label + .pillar-risk{ margin-top: 8px; }
