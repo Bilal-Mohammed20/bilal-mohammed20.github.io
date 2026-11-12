@@ -19,7 +19,7 @@ const CONTENT = {
     heroAvailability: "Australian Permanent Resident · Open to roles in Victoria",
     heroEyebrow: "ICT Program Officer · Tasmanian Department of Health",
     heroHeadline: "I take digital systems from pilot to full-scale adoption.",
-    heroSub: "The Research Ethics & Governance Information System (REGIS), which every research project in Tasmania's public health system must go through, is my proof: I designed and delivered its staged statewide rollout across 146 departments in Tasmania, and built the migration program, Power BI reporting, and automation that keep it running.",
+    heroSub: "The Research Ethics & Governance Information System (REGIS), which every research project in Tasmania's public health system must go through, is my proof: I designed and delivered its staged statewide rollout across 146 sites and departments in Tasmania, and built the migration program, Power BI reporting, and automation that keep it running.",
     stackLayers: [
       { id: "requirements", label: "Requirements", sub: "Stakeholder mapping & needs, workflows, policy", color: "var(--layer-coral)" },
       { id: "systems", label: "Systems", sub: "REGIS, platform config, migration", color: "var(--layer-violet)" },
@@ -30,7 +30,7 @@ const CONTENT = {
   },
 
   stats: [
-    { value: "146", label: "Departments across 4 regions", href: "#journey-regis-rollout" },
+    { value: "146", label: "Sites and departments across 4 regions", href: "#journey-regis-rollout" },
     { value: "650+", label: "Research projects administered in REGIS statewide" },
     { value: "150+", label: "Studies migrated", href: "#pillar-migration" },
     { value: "Since 2022", label: "NSW Health/vendor relationship", href: "#pillar-vendor" },
@@ -47,7 +47,7 @@ const CONTENT = {
       id: "journey-regis-rollout",
       summary: "Administer REGIS for the Department of Health, Tasmania (TAS Health): its structure, its vendor relationship, and the statewide adoption program built on top of it. <a href=\"#platform\">Full REGIS case study above&nbsp;↑</a>",
       details: [
-        "Designed and delivered a staged statewide rollout of both the Research Governance and Research Ethics modules across 146 departments and supporting departments in the South, North, North West, and Statewide Services regions, piloting first with the largest departments in the South and North to test the platform and validate user acceptance before full rollout. REGIS is now the sole system for research ethics and governance submissions across TAS Health, replacing the prior paper-based process entirely",
+        "Designed and delivered a staged statewide rollout of both the Research Governance and Research Ethics modules across 146 Department of Health sites and departments in the South, North, North West, and Statewide Services regions, piloting first with the largest departments in the South and North to test the platform and validate user acceptance before full rollout. REGIS is now the sole system for research ethics and governance submissions across TAS Health, replacing the prior paper-based process entirely",
         "TAS Health's primary technical liaison with NSW Health and the platform vendor since 2022: replicating and testing issues myself in the REGIS sandpit environment, translating them into precise specifications, and providing stakeholders with a solution or workaround while driving the fix through to resolution. Issues are frequent and varied, from permissions and access faults to process-level problems, on a live, statewide, mandatory production system",
         "Piloted new REGIS features including Teletrial functionality, and designed the milestone-based workaround Researchers and Health Research Officers still rely on for TAS annual and progress reports, since REGIS can only route these to the Human Research Ethics Committee (HREC), including a decision tree and cheat sheets used statewide",
         "Designed and delivered the migration process that's grown paper-based projects from 2 pilot studies to 150+ and counting, authoring the published migration guides and providing direct, one-on-one support to researchers and departments throughout. Personally identified a structural risk in the original process: migration access defaulted to whichever individual first registered a project, who for multi-site or national studies could sit in NSW Health, ACT Health, or another jurisdiction entirely and could leave or become unreachable. Negotiated a fix with NSW Health so access now defaults to research coordinators instead",
@@ -120,7 +120,7 @@ const CONTENT = {
         color: "var(--layer-coral)",
         tint: "var(--tint-coral)",
         title: "Built the stakeholder structure REGIS runs on",
-        body: "TAS Health's stakeholders, 146 departments across four regions (South, North, North West, and Statewide Services), are mapped directly into REGIS, built from a blank slate. I designed and delivered this as a staged rollout, piloting first with the largest departments in the South and North to test the platform and validate user acceptance before extending statewide. It's what determines which project centre and site a researcher can even select when registering a study, and it's kept current every time a department changes."
+        body: "TAS Health's stakeholders, 146 sites and departments across four regions (South, North, North West, and Statewide Services), are mapped directly into REGIS, built from a blank slate. I designed and delivered this as a staged rollout, piloting first with the largest departments in the South and North to test the platform and validate user acceptance before extending statewide. It's what determines which project centre and site a researcher can even select when registering a study, and it's kept current every time a department changes."
       },
       {
         id: "vendor",
