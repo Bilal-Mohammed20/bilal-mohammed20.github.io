@@ -1605,3 +1605,53 @@ a.stat-cell:hover::before, a.stat-cell:focus-visible::before{ transform: scaleX(
 .contact-actions a.is-in-view[href*="linkedin.com"]::after{
   animation-play-state: running;
 }
+
+
+/* ============================================================
+   REVISION — calmer visuals, same content
+   ============================================================ */
+/* Demo badges: quiet teal tag instead of a red sticker */
+.demo-badge{
+  background: var(--tint-teal); color: var(--layer-teal-text);
+  border: 1px solid rgba(18,83,73,0.28); box-shadow: none;
+}
+.demo-badge::after{ display: none; animation: none; }
+.demo-badge .demo-dot{ background: var(--layer-teal-text); animation: none; box-shadow: none; }
+.demo-badge:hover{ background: var(--ink); color: var(--paper); }
+.demo-badge:hover .demo-dot{ background: var(--paper); }
+
+/* Pillar bullet list */
+.pillar-points{ margin: 12px 0 16px; padding-left: 18px; color: var(--ink-soft); font-size: 0.94rem; }
+.pillar-points li{ margin-top: 8px; }
+.pillar-points b{ color: var(--ink); font-weight: 600; }
+
+/* Decision diagram: short preview until opened */
+.decision-block.is-collapsed .decision-diagram{
+  max-height: 340px; overflow: hidden;
+  -webkit-mask-image: linear-gradient(#000 55%, transparent);
+          mask-image: linear-gradient(#000 55%, transparent);
+}
+.decision-block.is-collapsed .decision-scroll-hint{ display: none; }
+.decision-expand, .project-show-all{
+  display: block; margin: 18px auto 0; cursor: pointer;
+  font-family: var(--font-mono); font-size: 13px; color: var(--ink);
+  background: var(--paper-raised); border: 1.5px solid var(--line-strong);
+  border-radius: 100px; padding: 10px 20px;
+}
+.decision-expand:hover, .project-show-all:hover{ border-color: var(--ink); }
+
+/* Builds: phones show the first four cards until asked for the rest */
+.project-show-all{ display: none; }
+@media (max-width: 640px){
+  .project-grid.is-collapsed .project-card:nth-child(n+5){ display: none; }
+  .project-show-all:not([hidden]){ display: block; }
+  /* the decorative card stack takes a full screen on phones before any proof */
+  .stack-visual{ display: none; }
+}
+
+/* Education: two compact columns on wide screens */
+@media (min-width: 900px){
+  .education-list{ display: grid; grid-template-columns: 1fr 1fr; column-gap: 56px; max-width: none; }
+  .edu-row{ padding: 14px 0; }
+  .edu-row:nth-child(2){ border-top: 1px solid var(--line); }
+}

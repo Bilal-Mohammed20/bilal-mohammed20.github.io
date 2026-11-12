@@ -362,6 +362,7 @@
         <div class="pillar-label">${pillar.label}</div>
         <h3>${pillar.title}</h3>
         <p>${applyEmphasis(pillar.body, PILLAR_FACTS[pillar.id])}</p>
+        ${pillar.points ? `<ul class="pillar-points">${pillar.points.map(pt => `<li>${pt}</li>`).join('')}</ul>` : ''}
         ${riskHtml}
         ${statHtml}
         ${linksHtml}`;
@@ -380,6 +381,18 @@
     $('#decision-title').textContent = df.title;
     $('#decision-intro').textContent = df.intro;
     renderDecisionDiagram();
+
+    // The diagram opens as a short preview so it doesn't dominate the page;
+    // the button, or picking any scenario, opens it fully.
+    const block = $('#decision-block');
+    const expandBtn = $('#decision-expand');
+    const setOpen = (open) => {
+      block.classList.toggle('is-collapsed', !open);
+      expandBtn.setAttribute('aria-expanded', String(open));
+      expandBtn.textContent = open ? 'Hide the diagram ▴' : 'Show the full diagram ▾';
+    };
+    expandBtn.addEventListener('click', () => setOpen(block.classList.contains('is-collapsed')));
+    $all('.decision-picker button[data-scenario]').forEach(b => b.addEventListener('click', () => setOpen(true)));
   }
 
   function renderDecisionDiagram() {
@@ -1857,9 +1870,15 @@
       }
     }
 
+    const showAllBtn = $('#project-show-all');
+    const expandGrid = () => { grid.classList.remove('is-collapsed'); showAllBtn.hidden = true; };
+    showAllBtn.addEventListener('click', expandGrid);
+    document.addEventListener('portfolio:jump', expandGrid);
+
     filterBar.addEventListener('click', (e) => {
       const btn = e.target.closest('.chip');
       if (!btn) return;
+      expandGrid();
       $all('.chip', filterBar).forEach(c => c.classList.remove('is-active'));
       btn.classList.add('is-active');
       positionChipPill();
@@ -2261,6 +2280,7 @@
     closeCmdk();
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     setTimeout(() => {
+      document.dispatchEvent(new CustomEvent('portfolio:jump'));
       item.el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
       item.el.classList.add('jump-highlight');
       if (!item.el.hasAttribute('tabindex')) item.el.setAttribute('tabindex', '-1');
