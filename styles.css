@@ -1662,3 +1662,32 @@ a.stat-cell:hover::before, a.stat-cell:focus-visible::before{ transform: scaleX(
   letter-spacing: 0.08em; text-transform: uppercase; color: var(--pillar-color-text, var(--ink-soft));
 }
 .pillar-risk-label + .pillar-risk{ margin-top: 8px; }
+
+/* Tracking workbook demo */
+.tw-status{
+  font-family: var(--font-mono); font-size: 11px; color: var(--ink);
+  background: var(--paper-raised); border: 1px solid var(--line-strong); border-radius: 6px; padding: 3px 4px; max-width: 100%;
+}
+.tw-empty{ font-style: italic; color: var(--ink-faint); white-space: normal; }
+.tw-new td{ background: var(--tint-teal); transition: background-color 1.2s var(--ease); }
+.tw-confirm{
+  display:flex; flex-wrap:wrap; align-items:center; gap: 10px 14px; margin-bottom: 14px;
+  padding: 12px 14px; border-radius: 10px; border: 1.5px solid var(--layer-color, var(--layer-gold));
+  background: var(--paper-raised); font-size: 0.9rem; color: var(--ink);
+}
+.tw-confirm[hidden]{ display:none; }
+.tw-confirm-text{ flex: 1 1 260px; }
+.tw-confirm-actions{ display:flex; gap: 8px; align-items:center; }
+.tw-btn{
+  font-family: var(--font-mono); font-size: 12px; padding: 9px 16px; border-radius: 100px;
+  border: 1.5px solid var(--line-strong); background: transparent; color: var(--ink-soft);
+  cursor:pointer; transition: all .2s var(--ease);
+}
+.tw-btn:hover{ border-color: var(--ink); color: var(--ink); }
+.tw-btn[hidden]{ display:none; }
+.tw-demo .rc-files{ grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+.tw-demo .rc-file:first-child{ grid-column: 1 / -1; }
+.tw-demo .rc-file{ overflow-x: auto; }
+.tw-demo .rc-table td{ white-space: normal; }
+.tw-demo .rc-table td:first-child{ white-space: nowrap; }
+@media (max-width: 640px){ .tw-status{ width: 128px; } }
