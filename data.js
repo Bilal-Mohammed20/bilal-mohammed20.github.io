@@ -242,13 +242,13 @@ const CONTENT = {
     {
       id: "folderlens",
       title: "FolderLens: Shared Folder Map & Duplicate Finder",
-      tag: "Offline HTML app · prototype",
+      tag: "Offline HTML app",
       layer: "insight",
       stack: ["JavaScript", "Offline HTML", "Excel export"],
       summary: "A single offline file that turns a plain folder listing into a searchable map of a team's shared folders, flagging duplicates, version copies, empty folders and naming slips so the team can tidy them up.",
       problem: "A team's shared MS Teams folders had grown over years: copies of the same document in several places, several versions of one file, empty folders and inconsistent names. Nobody could see the whole structure at once, so tidying up meant clicking through folder by folder.",
       build: "The user exports a folder listing from Windows as a text file and opens it in FolderLens, which runs entirely in the browser with nothing to install and never touches the files themselves. It builds a map of every folder with file counts and sizes, offers search and browse across all file names, groups identical copies and versions of the same document, lists empty folders, and points out naming problems such as spelling slips and mixed numbering styles. Results export to Excel, including a duplicates sheet with a Keep or Move choice for each file and a folder-level list for deciding what to archive. I specified the logic and tested it against a real listing of more than 1,200 files; AI wrote the code.",
-      impact: "Proposed as a service improvement, approved by management, and delivered as a working prototype on schedule. It gives the team one view of the whole folder structure and a ready-made list of what to merge, move or archive."
+      impact: "Proposed as a service improvement, approved by management, and delivered as a working tool on schedule. It gives the team one view of the whole folder structure and a ready-made list of what to merge, move or archive."
     },
     {
       id: "annual-report",
