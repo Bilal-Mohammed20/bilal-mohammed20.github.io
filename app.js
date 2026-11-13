@@ -51,7 +51,7 @@
       .replace(/'/g, '&#39;');
   }
 
-  const LIVE_DEMO_IDS = ['research-combiner', 'annual-report', 'weekly-report', 'form-extractor', 'sharepoint-sync', 'tracking-workbook', 'email-log', 'power-bi'];
+  const LIVE_DEMO_IDS = ['research-combiner', 'annual-report', 'weekly-report', 'form-extractor', 'sharepoint-sync', 'tracking-workbook', 'folderlens', 'email-log', 'power-bi'];
 
   // Wraps specific, hand-picked phrases in a bold coloured span — used to
   // surface genuine hard numbers as you read (Direction 2 from the colour
@@ -1558,6 +1558,213 @@
   }
 
   /* ---------------------------------------------------------
+     FOLDERLENS — live demo
+     Scaled-down illustration of the folder-audit logic: parse a
+     plain Windows folder listing, map the folders, and flag
+     identical copies, version copies, empty folders and naming
+     slips — entirely client-side on a made-up listing.
+  --------------------------------------------------------- */
+  const FL_ROOT = 'S:\\Team Folder';
+  const FL_SEED = [
+    { folder: '1. Admin', files: [
+        ['03/02/2026', '09:14', 48112, 'Team roster 2026.xlsx'],
+        ['11/03/2026', '14:02', 61440, 'Leave planner.xlsx'],
+        ['20/01/2026', '10:30', 35210, 'Induction checklist.docx'] ] },
+    { folder: '2 Team Meetings', files: [
+        ['03/02/2026', '15:45', 42300, 'Meeting minutes 03.02.26.docx'],
+        ['17/02/2026', '15:50', 44105, 'Meetng minutes 17.02.26.docx'],
+        ['12/01/2026', '08:20', 28004, 'Agenda template.docx'] ] },
+    { folder: '3.Reports', files: [
+        ['02/03/2026', '11:05', 310200, 'Quarterly report v2.docx'],
+        ['09/03/2026', '16:40', 325600, 'Quarterly report v3.docx'],
+        ['16/03/2026', '09:55', 331050, 'Quarterly report FINAL.docx'],
+        ['24/02/2026', '13:10', 890400, 'Dashboard guide.pdf'] ] },
+    { folder: '3.Reports\\Drafts', files: [
+        ['24/02/2026', '13:10', 890400, 'Dashboard guide.pdf'],
+        ['05/03/2026', '10:15', 212300, 'Annual summary DRAFT.docx'],
+        ['12/03/2026', '10:48', 219870, 'Annual summary Draft v2.docx'] ] },
+    { folder: '4. Training', files: [
+        ['18/11/2025', '09:00', 1240500, 'User guide.pdf'],
+        ['02/12/2025', '14:30', 16400000, 'Training video.mp4'] ] },
+    { folder: '4. Training\\Handouts', files: [
+        ['18/11/2025', '09:00', 1240500, 'User guide.pdf'],
+        ['21/11/2025', '11:25', 95300, 'Quick reference card.pdf'] ] },
+    { folder: '4. Training\\Old', files: [] },
+    { folder: '5. Archive', files: [] }
+  ];
+  const FL_SPELLING = { meetng: 'meeting', recieve: 'receive', reprot: 'report', agneda: 'agenda', calender: 'calendar' };
+
+  // The same kind of text a Windows "dir /s" command produces.
+  function flListingText() {
+    return FL_SEED.map(f => {
+      const lines = f.files.map(([d, t, size, name]) =>
+        `${d}  ${t}  ${size.toLocaleString('en-AU').padStart(12)} ${name}`);
+      return ` Directory of ${FL_ROOT}\\${f.folder}\n\n${lines.join('\n')}${lines.length ? '\n' : ''}` +
+             `${String(f.files.length).padStart(16)} File(s)`;
+    }).join('\n\n');
+  }
+
+  // Reads the listing text back into folders and files — nothing else is known to the demo.
+  function flParse(text) {
+    const folders = []; let current = null;
+    text.split('\n').forEach(line => {
+      const dir = line.match(/^\s*Directory of (.+)$/);
+      if (dir) {
+        current = { path: dir[1].replace(FL_ROOT + '\\', ''), files: [] };
+        folders.push(current);
+        return;
+      }
+      const file = line.match(/^(\d{2}\/\d{2}\/\d{4})\s+(\d{2}:\d{2})\s+([\d,]+)\s+(.+)$/);
+      if (file && current) current.files.push({ date: file[1], size: Number(file[3].replace(/,/g, '')), name: file[4], folder: current.path });
+    });
+    return folders;
+  }
+
+  function flSize(bytes) {
+    if (bytes >= 1048576) return (bytes / 1048576).toFixed(1) + ' MB';
+    if (bytes >= 1024) return Math.round(bytes / 1024) + ' KB';
+    return bytes + ' B';
+  }
+  const flFold = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  // "Quarterly report v3.docx" and "Quarterly report FINAL.docx" share the base "quarterly report"
+  function flBaseName(name) {
+    return flFold(name.replace(/\.[a-z0-9]+$/i, ''))
+      .replace(/\b(v\d+|final|draft|copy)\b/g, ' ')
+      .replace(/\d{2}\.\d{2}\.\d{2,4}/g, ' ')
+      .replace(/[^a-z0-9]+/g, ' ').trim();
+  }
+
+  function flAnalyse(folders) {
+    const files = folders.flatMap(f => f.files);
+    const total = files.reduce((s, f) => s + f.size, 0);
+
+    const bySame = new Map();
+    files.forEach(f => { const k = flFold(f.name) + '|' + f.size; bySame.set(k, (bySame.get(k) || []).concat(f)); });
+    const copies = [...bySame.values()].filter(g => g.length > 1);
+
+    const byBase = new Map();
+    files.forEach(f => { const k = flBaseName(f.name) + '|' + f.name.split('.').pop().toLowerCase(); byBase.set(k, (byBase.get(k) || []).concat(f)); });
+    const versions = [...byBase.values()].filter(g => new Set(g.map(f => f.name)).size > 1);
+
+    const empties = folders.filter(f => f.files.length === 0);
+
+    const naming = [];
+    files.forEach(f => {
+      flFold(f.name).split(/[^a-z]+/).forEach(w => { if (FL_SPELLING[w]) naming.push(`Possible spelling slip: "${f.name}" (${w} → ${FL_SPELLING[w]})`); });
+    });
+    const styles = new Set();
+    folders.filter(f => !f.path.includes('\\')).forEach(f => {
+      if (/^\d+\. /.test(f.path)) styles.add('"1. Name"');
+      else if (/^\d+\.\S/.test(f.path)) styles.add('"1.Name"');
+      else if (/^\d+ /.test(f.path)) styles.add('"1 Name"');
+    });
+    if (styles.size > 1) naming.push(`${styles.size} numbering styles are mixed: ${[...styles].join(', ')}`);
+    const drafts = new Set(files.map(f => (f.name.match(/\bdraft\b/i) || [])[0]).filter(Boolean));
+    if (drafts.size > 1) naming.push(`"${[...drafts].join('" and "')}" are capitalised differently`);
+
+    const biggest = files.slice().sort((x, y) => y.size - x.size)[0];
+    return { files, total, copies, versions, empties, naming, biggest };
+  }
+
+  function flDemoHTML() {
+    const listing = flListingText().split('\n');
+    return `
+      <div class="rc-demo fl-demo">
+        <div class="rc-demo-label">A scaled-down illustration of the folder-audit logic (not the full tool), run here on a made-up folder listing</div>
+        <div class="rc-file fl-listing-wrap">
+          <div class="rc-file-name">files.txt — a folder listing exported from Windows</div>
+          <pre class="fl-listing">${escapeHtml(listing.slice(0, 9).join('\n'))}\n… ${listing.length - 9} more lines</pre>
+        </div>
+        <div class="rc-demo-actions">
+          <button type="button" class="sp-sync-btn fl-scan">Scan folder listing →</button>
+          <button type="button" class="rc-reset-btn" hidden>↺ Reset</button>
+        </div>
+        <div class="sp-status fl-status" aria-live="polite"></div>
+        <div class="fl-results" hidden>
+          <div class="rc-files fl-cards"></div>
+          <div class="fl-search-row">
+            <input type="search" class="el-input fl-search" placeholder="Search file names, e.g. guide" aria-label="Search file names in the made-up listing" autocomplete="off">
+          </div>
+          <div class="fl-search-out rc-log" aria-live="polite"></div>
+        </div>
+      </div>`;
+  }
+
+  function wireFlDemo(card) {
+    const scanBtn = $('.fl-scan', card);
+    if (!scanBtn) return;
+    const resetBtn = $('.rc-reset-btn', card);
+    const status = $('.fl-status', card);
+    const results = $('.fl-results', card);
+    const cards = $('.fl-cards', card);
+    const search = $('.fl-search', card);
+    const searchOut = $('.fl-search-out', card);
+    let files = [];
+
+    const li = items => `<ul class="fl-list">${items.map(i => `<li>${i}</li>`).join('')}</ul>`;
+    const where = g => g.map(f => escapeHtml(f.folder)).join(' and ');
+
+    function runSearch() {
+      const q = flFold(search.value.trim());
+      if (!q) { searchOut.innerHTML = ''; return; }
+      const hits = files.filter(f => flFold(f.name).includes(q));
+      searchOut.innerHTML = `<div class="rc-log-line rc-log-summary">${hits.length} file${hits.length === 1 ? '' : 's'} found</div>` +
+        hits.slice(0, 8).map(f => `<div class="rc-log-line"><span class="rc-log-file">${escapeHtml(f.folder)}</span> \\ ${escapeHtml(f.name)}</div>`).join('');
+    }
+    search.addEventListener('input', runSearch);
+
+    resetBtn.addEventListener('click', () => {
+      results.hidden = true; cards.innerHTML = ''; status.textContent = '';
+      search.value = ''; searchOut.innerHTML = ''; files = [];
+      resetBtn.hidden = true; scanBtn.disabled = false;
+      clearDemoDone(card);
+    });
+
+    scanBtn.addEventListener('click', () => {
+      scanBtn.disabled = true;
+      const folders = flParse(flListingText());
+      const r = flAnalyse(folders);
+      files = r.files;
+      const maxBytes = Math.max(...folders.map(f => f.files.reduce((s, x) => s + x.size, 0)), 1);
+
+      const mapRows = folders.map(f => {
+        const bytes = f.files.reduce((s, x) => s + x.size, 0);
+        const depth = f.path.split('\\').length - 1;
+        return `<tr><td style="padding-left:${depth * 14}px">${escapeHtml(f.path.split('\\').pop())}</td><td>${f.files.length}</td>
+          <td><span class="fl-bar"><span style="width:${bytes ? Math.max(3, Math.round(bytes / maxBytes * 100)) : 0}%"></span></span>${bytes ? flSize(bytes) : '—'}</td></tr>`;
+      }).join('');
+
+      cards.innerHTML = `
+        <div class="rc-file fl-wide">
+          <div class="rc-file-name">Folder map</div>
+          <table class="rc-table"><thead><tr><th>Folder</th><th>Files</th><th>Size</th></tr></thead><tbody>${mapRows}</tbody></table>
+        </div>
+        <div class="rc-file">
+          <div class="rc-file-name">${r.copies.length} set${r.copies.length === 1 ? '' : 's'} of identical copies</div>
+          ${li(r.copies.map(g => `<b>${escapeHtml(g[0].name)}</b> (${flSize(g[0].size)}) is in ${where(g)}`))}
+        </div>
+        <div class="rc-file">
+          <div class="rc-file-name">${r.versions.length} document${r.versions.length === 1 ? '' : 's'} with several versions</div>
+          ${li(r.versions.map(g => `${g.length} versions: ${g.map(f => `<b>${escapeHtml(f.name)}</b>`).join(', ')}`))}
+        </div>
+        <div class="rc-file">
+          <div class="rc-file-name">${r.empties.length} empty folder${r.empties.length === 1 ? '' : 's'}</div>
+          ${li(r.empties.map(f => escapeHtml(f.path)))}
+        </div>
+        <div class="rc-file">
+          <div class="rc-file-name">Naming notes</div>
+          ${li(r.naming.map(escapeHtml))}
+        </div>`;
+
+      const share = Math.round(r.biggest.size / r.total * 100);
+      status.textContent = `${r.files.length} files read in ${folders.length} folders, ${flSize(r.total)} in total. Largest file: ${r.biggest.name} (${flSize(r.biggest.size)}, ${share}% of the total).`;
+      results.hidden = false;
+      resetBtn.hidden = false;
+      markDemoDone(card);
+    });
+  }
+
+  /* ---------------------------------------------------------
      APPLICATION TRACKING WORKBOOK — live demo
      Scaled-down illustration of the workbook's VBA logic: setting
      a row's Status to Authorised asks for confirmation, moves the
@@ -2080,6 +2287,7 @@
           ${proj.id === 'weekly-report' ? wrDemoHTML() : ''}
           ${proj.id === 'form-extractor' ? feDemoHTML() : ''}
           ${proj.id === 'sharepoint-sync' ? spDemoHTML() : ''}
+          ${proj.id === 'folderlens' ? flDemoHTML() : ''}
           ${proj.id === 'tracking-workbook' ? twDemoHTML() : ''}
           ${proj.id === 'email-log' ? elDemoHTML() : ''}
           ${proj.id === 'power-bi' ? dashboardFlowHTML() : ''}
@@ -2095,6 +2303,7 @@
       if (proj.id === 'weekly-report') wireWeeklyDemo(card);
       if (proj.id === 'form-extractor') wireFeDemo(card);
       if (proj.id === 'sharepoint-sync') wireSpDemo(card);
+      if (proj.id === 'folderlens') wireFlDemo(card);
       if (proj.id === 'tracking-workbook') wireTwDemo(card);
       if (proj.id === 'email-log') wireElDemo(card);
       if (LIVE_DEMO_IDS.includes(proj.id)) attachDemoBadge(card, btn, proj.id === 'power-bi' ? 'Sample visual inside' : 'Live demo inside');

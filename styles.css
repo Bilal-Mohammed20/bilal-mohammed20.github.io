@@ -1691,3 +1691,27 @@ a.stat-cell:hover::before, a.stat-cell:focus-visible::before{ transform: scaleX(
 .tw-demo .rc-table td{ white-space: normal; }
 .tw-demo .rc-table td:first-child{ white-space: nowrap; }
 @media (max-width: 640px){ .tw-status{ width: 128px; } }
+
+/* FolderLens demo */
+.fl-listing-wrap{ margin-bottom: 14px; }
+.fl-listing{
+  margin: 0; font-family: var(--font-mono); font-size: 10.5px; line-height: 1.5; color: var(--ink-soft);
+  white-space: pre; overflow-x: auto;
+}
+.fl-results{ margin-top: 4px; }
+.fl-results[hidden]{ display: none; }
+.fl-demo .rc-files{ grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+.fl-demo .fl-wide{ grid-column: 1 / -1; }
+.fl-demo .rc-table td{ white-space: normal; }
+.fl-list{ margin: 6px 0 0; padding-left: 16px; font-size: 0.84rem; color: var(--ink-soft); line-height: 1.45; }
+.fl-list li{ margin-top: 5px; overflow-wrap: anywhere; }
+.fl-list b{ color: var(--ink); font-weight: 600; }
+.fl-bar{
+  display: inline-block; vertical-align: middle; width: 70px; height: 6px; margin-right: 8px;
+  border-radius: 100px; background: var(--line); overflow: hidden;
+}
+.fl-bar > span{ display: block; height: 100%; border-radius: 100px; background: var(--layer-color, var(--layer-teal)); }
+.fl-search-row{ display: flex; margin-top: 2px; }
+.fl-search{ min-width: 0; }
+.fl-demo .rc-table td:last-child{ white-space: nowrap; }
+@media (max-width: 640px){ .fl-bar{ width: 44px; margin-right: 6px; } }
